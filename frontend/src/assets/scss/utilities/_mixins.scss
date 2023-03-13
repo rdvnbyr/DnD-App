@@ -1,0 +1,18 @@
+@mixin btn ($color, $color-hover, $text-color) {
+    background-color: $color;
+    border-color: $color;
+    color: $text-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $color-hover;
+        border-color: $color-hover;
+    }
+
+    &:active {
+        box-shadow: none;
+        color: $text-color;
+        transform: translateY(-1px);
+    }
+}

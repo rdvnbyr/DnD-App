@@ -1,0 +1,9 @@
+
+node_modules
+
+# Logs
+yarn.lock
+yarn-error.log
+
+# git file
+.git

@@ -1,0 +1,674 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "DnD API",
+    "description": "",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "byrridvan@gmail.com"
+    },
+    "version": "1.0.11"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "UserController",
+      "description": "Operations about user"
+    },
+    {
+      "name": "WorkspaceController",
+      "description": "Operation about Workspace"
+    },
+    {
+      "name": "BoardController",
+      "description": "Operation about Boards"
+    }
+  ],
+  "paths": {
+    "/users/register": {
+      "post": {
+        "tags": ["UserController"],
+        "summary": "Create user",
+        "description": "Creating a new user in the system with the given data in the request body.",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "example": {
+                "email": "apiteam@swagger.io",
+                "password": "password",
+                "role": "user",
+                "licence": "free",
+                "avatar": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": ["UserController"],
+        "summary": "Logs user into the system",
+        "description": "Logging in a user with the given email and password.",
+        "operationId": "loginUser",
+        "requestBody": {
+          "description": "Login user object with email and password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "example": {
+                "email": "apiteam@swagger.io",
+                "password": "password"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "tags": ["UserController"],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation and logged out"
+          },
+          "401": {
+            "description": "Unauthorized access or invalid token"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users": {
+      "patch": {
+        "tags": ["UserController"],
+        "summary": "Update user information",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "parameters": [],
+        "requestBody": {
+          "description": "Updated user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "401": {
+            "description": "Unauthorized access or invalid token"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["UserController"],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "Unauthorized access or invalid token"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/workspaces": {
+      "post": {
+        "tags": ["WorkspaceController"],
+        "summary": "Create workspace",
+        "description": "Creating a new workspace in the system with the given data in the request body.",
+        "operationId": "createWorkspace",
+        "requestBody": {
+          "description": "Created workspace object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Workspace"
+              },
+              "example": {
+                "name": "Workspace 1",
+                "description": "Workspace 1 description",
+                "type": "personal",
+                "boards": [],
+                "owner": "xxx_user_id_xxx"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": ["WorkspaceController"],
+        "summary": "Get workspaces of the logged in user",
+        "description": "Get all workspaces of the logged in user.",
+        "operationId": "getWorkspaces",
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workspace"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access or invalid token"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/workspaces/:id": {
+      "get": {
+        "tags": ["WorkspaceController"],
+        "summary": "Get workspace by id",
+        "description": "Get workspace by id.",
+        "operationId": "getWorkspaceById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of workspace to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access or invalid token"
+          },
+          "404": {
+            "description": "Workspace not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["WorkspaceController"],
+        "summary": "Update workspace",
+        "description": "Update workspace by id.",
+        "operationId": "updateWorkspace",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of workspace to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updated workspace object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Workspace"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workspace"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid workspace supplied"
+          },
+          "401": {
+            "description": "Unauthorized access or invalid token"
+          },
+          "404": {
+            "description": "Workspace not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["WorkspaceController"],
+        "summary": "Delete workspace",
+        "description": "Delete workspace by id.",
+        "operationId": "deleteWorkspace",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of workspace to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "401": {
+            "description": "Unauthorized access or invalid token"
+          },
+          "404": {
+            "description": "Workspace not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "boards": {
+      "post": {
+        "tags": ["BoardController"],
+        "summary": "Create board",
+        "description": "Creating a new board in the system with the given data in the request body.",
+        "operationId": "createBoard",
+        "requestBody": {
+          "description": "Created board object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Board"
+              },
+              "example": {
+                "name": "Board 1",
+                "description": "Board 1 description",
+                "workspaceId": "xxx_workspace_id_xxx",
+                "owner": "xxx_user_id_xxx"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Board"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "theUser"
+          },
+          "email": {
+            "type": "string",
+            "example": "john@email.com",
+            "description": "Email address of the user"
+          },
+          "password": {
+            "type": "string",
+            "example": "Password123",
+            "description": "Password of the user"
+          },
+          "role": {
+            "type": "string",
+            "description": "User Role",
+            "example": "user"
+          },
+          "licence": {
+            "type": "string",
+            "description": "User Licence Type (free, trial, premium, enterprise)",
+            "example": "free"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User Avatar",
+            "example": "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+          }
+        }
+      },
+      "Workspace": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "The Workspace"
+          },
+          "description": {
+            "type": "string",
+            "example": "The Workspace Description"
+          },
+          "owner": {
+            "type": "string",
+            "example": "theUser_id",
+            "description": "The user id of the owner of the workspace"
+          },
+          "boards": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "board_id"
+            }
+          },
+          "type": {
+            "type": "string",
+            "example": "personal",
+            "description": "The type of the workspace (personal, team, enterprise)"
+          }
+        }
+      },
+      "Board": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "The Board"
+          },
+          "description": {
+            "type": "string",
+            "example": "The Board Description"
+          },
+          "owner": {
+            "type": "string",
+            "example": "theUser_id",
+            "description": "The user id of the owner of the board"
+          },
+          "workspaceId": {
+            "type": "string",
+            "example": "workspace_id",
+            "description": "The workspace id of the board"
+          },
+          "lists": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "list_id"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "The List"
+                },
+                "tasks": {
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "_id": {
+                        "type": "string",
+                        "example": "list_id"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "The List"
+                      },
+                      "description": {
+                        "type": "string",
+                        "example": "The List Description"
+                      },
+                      "activities": {
+                        "type": "array",
+                        "items": {
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "activity_id"
+                            },
+                            "comment": {
+                              "type": "string",
+                              "example": "The Comment"
+                            },
+                            "user": {
+                              "type": "string",
+                              "example": "theUser_id"
+                            },
+                            "attachments": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "example": "attachment_id"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "members": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "properties": {
+                      "userId": {
+                        "type": "string",
+                        "example": "theUser_id"
+                      },
+                      "role": {
+                        "type": "string",
+                        "example": "admin"
+                      },
+                      "permissions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "READ"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "ObjectId"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "##default"
+        }
+      }
+    },
+    "requestBodies": {
+      "UserArray": {
+        "description": "List of user object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "in": "header"
+      }
+    }
+  }
+}

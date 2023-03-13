@@ -1,0 +1,22 @@
+$primary: #0080ff;
+$secondary: #FF7F00;
+$success: #009c46;
+$info: #8000FF;
+$warning: #ffa600;
+$danger: #d90000;
+$light: #d8ebff;
+$dark: #001222;
+$white: #fff;
+$black: #000;
+
+$theme-colors : ("primary" : $primary,
+    "secondary" : $secondary,
+    "success" : $success,
+    "info" : $info,
+    "warning" : $warning,
+    "danger" : $danger,
+    "light" : $light,
+    "dark" : $dark,
+    // "white" : $white,
+    // "black" : $black
+);

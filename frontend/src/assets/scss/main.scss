@@ -1,0 +1,13 @@
+// Include any default variable overrides here (though functions won't be available)
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import './utilities/variables';
+// Import Bootstrap and its default variables
+@import "../node_modules/bootstrap/scss/bootstrap";
+// Then add additional custom code here
+@import './utilities/mixins';
+@import './utilities/typography';
+@import './utilities/functions';
+
+// components
+@import './components/_button';
+
