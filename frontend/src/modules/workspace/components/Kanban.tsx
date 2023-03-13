@@ -37,7 +37,12 @@ function Kanban(props: KanbanProps) {
   const [createListTask] = useCreateTaskMutation();
   const [UpdateListTask] = useUpdateTaskMutation();
   const [DeleteListTask] = useDeleteTaskMutation();
-  const { isSuccess, data: board, refetch, isError } = useGetBoardByIdQuery({
+  const {
+    isSuccess,
+    data: board,
+    refetch,
+    isError,
+  } = useGetBoardByIdQuery({
     boardId,
   });
 
@@ -185,12 +190,20 @@ function Kanban(props: KanbanProps) {
                         />
                       );
                     })}
+                    <div
+                      style={{
+                        width: '300px',
+                        minWidth: '300px',
+                      }}
+                    >
+                      <AddBoardListForm
+                        onListHandler={addBoardListHandler}
+                        toggleListForm={setShowAddBoardListForm}
+                        show={showAddBoardListForm}
+                      />
+                    </div>
+
                     {provided.placeholder}
-                    <AddBoardListForm
-                      onListHandler={addBoardListHandler}
-                      toggleListForm={setShowAddBoardListForm}
-                      show={showAddBoardListForm}
-                    />
                   </StyledKanban>
                 )}
               </Droppable>
@@ -208,8 +221,8 @@ const StyledKanban = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: nowrap;
-  margin: 1rem auto;
-  min-width: calc(50vw);
+  margin: 1rem 0;
+  min-width: calc(80vw);
   /* max-height: 80vh; */
 `;
 

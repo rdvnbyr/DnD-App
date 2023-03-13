@@ -84,13 +84,11 @@ const Column: React.FC<ColumnProps> = ({
               );
             }}
           </Droppable>
-          <div>
-            <AddTaskForm
-              onTaskHandler={addTaskHandler}
-              toggleTaskForm={setShowForm}
-              show={showForm}
-            />
-          </div>
+          <AddTaskForm
+            onTaskHandler={addTaskHandler}
+            toggleTaskForm={setShowForm}
+            show={showForm}
+          />
         </StyledColumnContainer>
       )}
     </Draggable>

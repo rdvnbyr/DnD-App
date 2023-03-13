@@ -9,12 +9,13 @@ export const AddBoardListForm = ({
   show,
 }: AddBoardFormProps) => {
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center mt-2">
+    <div className="mt-2 ">
       <button
-        className="btn btn-outline-dark btn-sm"
+        className="btn btn-outline-dark"
         onClick={() => toggleListForm((prev) => !prev)}
         style={{
           display: !show ? 'block' : 'none',
+          minWidth: '10rem',
         }}
       >
         + Add Column

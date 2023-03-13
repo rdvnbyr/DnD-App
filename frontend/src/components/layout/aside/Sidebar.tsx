@@ -1,5 +1,5 @@
-import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SidebarMenuItems } from '../../../lib/models';
 import { _uuidByLength } from '../../../lib/utils';
 
@@ -20,7 +20,7 @@ interface SidebarLayoutProps {
 function SidebarLayout({ menuItems }: SidebarLayoutProps) {
   const params = useParams();
   const navigate = useNavigate();
-  const { collapseSidebar } = useProSidebar();
+  // const { collapseSidebar } = useProSidebar();
   const navigateMenuHandler = (path: string) => navigate(path);
 
   return (
@@ -31,11 +31,11 @@ function SidebarLayout({ menuItems }: SidebarLayoutProps) {
         minHeight: 'calc(100vh - 64px)',
       }}
     >
-      <header className="p-2 text-start">
+      {/*       <header className="p-2 text-start">
         <button className="btn btn-sm btn-dark" onClick={() => collapseSidebar()}>
           toggle
         </button>
-      </header>
+      </header> */}
       <Menu>
         <MenuItem
           icon={<Icon />}
@@ -45,7 +45,7 @@ function SidebarLayout({ menuItems }: SidebarLayoutProps) {
         </MenuItem>
       </Menu>
       <Menu>
-        <h5 className='p-1 mt-2'>Your Boards</h5>
+        <h5 className="p-1 mt-2">Your Boards</h5>
         {menuItems.map((item) => (
           <MenuItem
             icon={<Icon />}

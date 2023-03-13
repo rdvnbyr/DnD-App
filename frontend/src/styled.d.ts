@@ -21,7 +21,7 @@ declare module 'styled-components' {
         main: string;
         light: string;
         dark: string;
-        gradient: Style;
+        textColor: Style;
       };
     };
     typography: {
@@ -33,8 +33,17 @@ declare module 'styled-components' {
     spacing: {};
     breakpoints: {};
     zIndex: {};
-    shapes: {};
-    shadows: {};
+    shapes: {
+      rounded: string,
+      roundedCircle: string,
+      roundedPill: string,
+      roundedNone: string,
+    };
+    shadows: {
+      boxShadow: string;
+      boxShadowHover: string;
+      boxShadowActive: string;
+    };
     transitions: {};
   }
 }
