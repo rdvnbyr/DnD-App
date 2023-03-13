@@ -1,4 +1,4 @@
-# dnd-app
+# DnD App
 
 ## backend setup instructions
 ### create a environment files ".env" in the backend directory
