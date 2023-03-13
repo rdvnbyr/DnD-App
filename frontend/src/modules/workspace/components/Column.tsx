@@ -4,22 +4,25 @@ import styled from 'styled-components';
 import { BoardList, BoardTask } from '../../../lib/models';
 import { Task } from './Task';
 import { AddTaskForm } from './_partials/AddTaskForm';
+import { Button, Dropdown } from 'react-bootstrap';
 
 interface ColumnProps {
   column: BoardList;
   children?: React.ReactNode;
   index: number;
   onCreate: (newTask: Omit<BoardTask, '_id'>, listId: string) => void;
-  onUpdate: (task: Omit<BoardTask, '_id'>, listId: string, taskId: string) => void;
-  onDelete: (listId: string, taskId: string) => void;
+  onUpdateTask: (task: Omit<BoardTask, '_id'>, listId: string, taskId: string) => void;
+  onDeleteTask: (listId: string, taskId: string) => void;
+  onDeleteList: (listId: string) => void;
 }
 
 const Column: React.FC<ColumnProps> = ({
   column,
   index,
   onCreate,
-  onDelete,
-  onUpdate,
+  onDeleteTask,
+  onUpdateTask,
+  onDeleteList,
 }) => {
   const { _id, tasks, name } = column;
   const [showForm, setShowForm] = React.useState<boolean>(false);
@@ -53,28 +56,16 @@ const Column: React.FC<ColumnProps> = ({
         >
           <StyledColumnTitle {...dragProvided.dragHandleProps}>
             <span>{name}</span>
-            <div className="dropdown list-action">
-              <button
-                className="btn btn-secondary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Action
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" role="button">
-                    Join List
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" role="button">
-                    Delete List
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <Dropdown>
+              <Dropdown.Toggle split variant="secondary" id="dropdown-split-basic" />
+
+              <Dropdown.Menu>
+                <Dropdown.Item role="button">Join</Dropdown.Item>
+                <Dropdown.Item role="button" onClick={() => onDeleteList(_id.toString())}>
+                  Delete List
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </StyledColumnTitle>
 
           <Droppable droppableId={_id.toString()} type="TASK">

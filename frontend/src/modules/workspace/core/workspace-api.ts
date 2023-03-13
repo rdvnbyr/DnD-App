@@ -117,6 +117,18 @@ export const workspaceApi = createApi({
       },
     }),
 
+    deleteBoardList: builder.mutation<
+      BoardCredentials,
+      { listId: string; boardId: string }
+    >({
+      query: ({ listId, boardId }) => {
+        return {
+          url: `/boards/${boardId}/lists/${listId}`,
+          method: 'DELETE',
+        };
+      },
+    }),
+
     // Task endpoints here
     createTask: builder.mutation<
       BoardCredentials,
@@ -191,6 +203,7 @@ export const {
   useDeleteBoardMutation,
   useUpdateBoardListMutation,
   useCreateBoardListMutation,
+  useDeleteBoardListMutation,
   useCreateTaskMutation,
   useUpdateTaskMutation,
   useDeleteTaskMutation,

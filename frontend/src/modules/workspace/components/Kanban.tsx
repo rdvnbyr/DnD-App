@@ -5,6 +5,7 @@ import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 import {
   useCreateBoardListMutation,
   useCreateTaskMutation,
+  useDeleteBoardListMutation,
   useDeleteTaskMutation,
   useGetBoardByIdQuery,
   useUpdateBoardListMutation,
@@ -32,6 +33,7 @@ function Kanban(props: KanbanProps) {
   // queries and mutations < start >
   const [updateBoardLists] = useUpdateBoardListMutation();
   const [createBoardList] = useCreateBoardListMutation();
+  const [deleteBoardList] = useDeleteBoardListMutation();
   const [createListTask] = useCreateTaskMutation();
   const [UpdateListTask] = useUpdateTaskMutation();
   const [DeleteListTask] = useDeleteTaskMutation();
@@ -66,6 +68,22 @@ function Kanban(props: KanbanProps) {
         setShowAddBoardListForm(false);
       });
   };
+
+  const updateBoardListHandler = useCallback(
+    async (listId: string, newList: Omit<BoardList, '_id'>) => {},
+    []
+  );
+
+  const deleteBoardListHandler = useCallback(async (listId: string) => {
+    deleteBoardList({
+      boardId: boardId,
+      listId: listId,
+    })
+      .unwrap()
+      .then((res) => {
+        setColumns(res.lists);
+      });
+  }, []);
 
   const addTaskHandler = useCallback(
     async (newTask: Omit<BoardTask, '_id'>, listId: string) => {
@@ -160,9 +178,10 @@ function Kanban(props: KanbanProps) {
                           key={column._id}
                           column={column}
                           index={i}
+                          onDeleteList={deleteBoardListHandler}
                           onCreate={addTaskHandler}
-                          onUpdate={updateTaskHandler}
-                          onDelete={deleteTaskHandler}
+                          onUpdateTask={updateTaskHandler}
+                          onDeleteTask={deleteTaskHandler}
                         />
                       );
                     })}
