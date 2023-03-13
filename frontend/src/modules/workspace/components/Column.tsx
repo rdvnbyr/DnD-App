@@ -46,9 +46,36 @@ const Column: React.FC<ColumnProps> = ({
 
   return (
     <Draggable draggableId={_id.toString()} index={index}>
-      {(provided) => (
-        <StyledColumnContainer {...provided.draggableProps} ref={provided.innerRef}>
-          <StyledColumnTitle {...provided.dragHandleProps}>{name}</StyledColumnTitle>
+      {(dragProvided) => (
+        <StyledColumnContainer
+          {...dragProvided.draggableProps}
+          ref={dragProvided.innerRef}
+        >
+          <StyledColumnTitle {...dragProvided.dragHandleProps}>
+            <span>{name}</span>
+            <div className="dropdown list-action">
+              <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Action
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <a className="dropdown-item" role="button">
+                    Join List
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" role="button">
+                    Delete List
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </StyledColumnTitle>
 
           <Droppable droppableId={_id.toString()} type="TASK">
             {(provided, snapshot) => {
@@ -66,11 +93,13 @@ const Column: React.FC<ColumnProps> = ({
               );
             }}
           </Droppable>
-          <AddTaskForm
-            onTaskHandler={addTaskHandler}
-            toggleTaskForm={setShowForm}
-            show={showForm}
-          />
+          <div>
+            <AddTaskForm
+              onTaskHandler={addTaskHandler}
+              toggleTaskForm={setShowForm}
+              show={showForm}
+            />
+          </div>
         </StyledColumnContainer>
       )}
     </Draggable>
@@ -79,18 +108,23 @@ const Column: React.FC<ColumnProps> = ({
 
 const StyledColumnContainer = styled.div`
   margin: 8px;
-  border: 1px solid crimson;
+  border: 1px solid lightgrey;
   border-radius: 2px;
-  background: white;
+  background: ${({ theme }) => theme.colors.secondary.light};
   min-width: 300px;
   display: flex;
   flex-direction: column;
+  /* .list-action {
+  } */
 `;
 
 const StyledColumnTitle = styled.h3`
   padding: 8px;
-  background-color: ${({ theme }) => theme.colors.primary.main};
+  background-color: ${({ theme }) => theme.colors.secondary.main};
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const StyledColumnCard = styled.div<{ isDraggingOver: boolean }>`
@@ -98,7 +132,6 @@ const StyledColumnCard = styled.div<{ isDraggingOver: boolean }>`
   flex: 1;
   min-height: 100px;
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isDraggingOver ? 'skyblue' : 'white')};
 `;
 
 const StyledList = styled.div({

@@ -151,7 +151,7 @@ function Kanban(props: KanbanProps) {
                 ignoreContainerClipping={false}
                 isCombineEnabled={false}
               >
-                {(provided) => (
+                {(provided, snapshot) => (
                   <StyledKanban ref={provided.innerRef} {...provided.droppableProps}>
                     {columns.map((column, i) => {
                       if (!column._id) return null;

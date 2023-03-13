@@ -19,6 +19,7 @@ export interface Task {
   labels?: string[];
   attachments?: string[];
   members: MemberSchema[];
+  createdAt?: string;
 }
 export type BoardTask = Task;
 export interface BoardList {

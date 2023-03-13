@@ -17,7 +17,7 @@ export const Workspace = () => {
         label: board.name,
         path: `/ws/${wsId}/b/${board._id}`,
         icon: 'icon',
-        id: board._id as string,
+        id: board._id.toString() as string,
       }))
     : [];
 

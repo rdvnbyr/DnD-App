@@ -2,8 +2,8 @@ import { lighten, darken, linearGradient } from 'polished';
 import { DefaultTheme } from 'styled-components';
 const colors = {
   primary: "#0080ff" ,
-  secondary: '#FF7F00',
-  info: '#8000FF',
+  secondary: '#8000FF',
+  info: '#FF7F00',
   success: '#009c46',
   warning: '#ffa600',
   danger: '#d90000',
@@ -18,8 +18,8 @@ const getColor = (color: Partial<keyof Colors>) => {
   const _color = colors[color];
   return {
     main: _color,
-    light: lighten(0.1, _color),
-    dark: darken(0.1, _color),
+    light: lighten(0.4, _color),
+    dark: darken(0.2, _color),
     gradient: linearGradient({
       colorStops: [_color, darken(0.1, _color)],
       toDirection: 'to bottom',
