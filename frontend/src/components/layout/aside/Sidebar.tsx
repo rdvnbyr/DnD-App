@@ -1,4 +1,4 @@
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, sidebarClasses } from 'react-pro-sidebar';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SidebarMenuItems } from '../../../lib/models';
 import { _uuidByLength } from '../../../lib/utils';
@@ -26,7 +26,6 @@ function SidebarLayout({ menuItems }: SidebarLayoutProps) {
   return (
     <Sidebar
       rootStyles={{
-        backgroundColor: 'white',
         color: 'black',
         minHeight: 'calc(100vh - 64px)',
       }}
@@ -37,15 +36,12 @@ function SidebarLayout({ menuItems }: SidebarLayoutProps) {
         </button>
       </header> */}
       <Menu>
-        <MenuItem
-          icon={<Icon />}
-          onClick={() => navigateMenuHandler(`/ws/${params.wsId}`)}
-        >
+        <MenuItem onClick={() => navigateMenuHandler(`/ws/${params.wsId}`)}>
           Dashboard
         </MenuItem>
       </Menu>
       <Menu>
-        <h5 className="p-1 mt-2">Your Boards</h5>
+        <MenuItem>Your Workspace</MenuItem>
         {menuItems.map((item) => (
           <MenuItem
             icon={<Icon />}

@@ -37,17 +37,12 @@ function Kanban(props: KanbanProps) {
   const [createListTask] = useCreateTaskMutation();
   const [UpdateListTask] = useUpdateTaskMutation();
   const [DeleteListTask] = useDeleteTaskMutation();
-  const {
-    isSuccess,
-    data: board,
-    refetch,
-    isError,
-  } = useGetBoardByIdQuery({
+  const { isSuccess, data: board, refetch, isError } = useGetBoardByIdQuery({
     boardId,
   });
 
-  const [showAddBoardListForm, setShowAddBoardListForm] = useState<boolean>(false);
   const [columns, setColumns] = useState<BoardList[]>(board?.lists || []);
+  const [showAddBoardListForm, setShowAddBoardListForm] = useState<boolean>(false);
 
   useEffect(() => {
     if (board && _isArray(board?.lists)) {
@@ -161,56 +156,53 @@ function Kanban(props: KanbanProps) {
 
   return (
     <Suspense fallback={<LoadingCOmponent />}>
-      <>
-        {!isSuccess || isError ? (
-          <div>Board not found</div>
-        ) : (
-          <>
-            <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable
-                droppableId={boardId.toString()}
-                type="COLUMN"
-                direction="horizontal"
-                ignoreContainerClipping={false}
-                isCombineEnabled={false}
-              >
-                {(provided, snapshot) => (
-                  <StyledKanban ref={provided.innerRef} {...provided.droppableProps}>
-                    {columns.map((column, i) => {
-                      if (!column._id) return null;
-                      return (
-                        <Column
-                          key={column._id}
-                          column={column}
-                          index={i}
-                          onDeleteList={deleteBoardListHandler}
-                          onCreate={addTaskHandler}
-                          onUpdateTask={updateTaskHandler}
-                          onDeleteTask={deleteTaskHandler}
-                        />
-                      );
-                    })}
-                    <div
-                      style={{
-                        width: '300px',
-                        minWidth: '300px',
-                      }}
-                    >
-                      <AddBoardListForm
-                        onListHandler={addBoardListHandler}
-                        toggleListForm={setShowAddBoardListForm}
-                        show={showAddBoardListForm}
+      {!isSuccess || isError ? (
+        <div>Board not found</div>
+      ) : (
+        <>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable
+              droppableId={boardId.toString()}
+              type="COLUMN"
+              direction="horizontal"
+              ignoreContainerClipping={false}
+              isCombineEnabled={false}
+            >
+              {(provided, snapshot) => (
+                <StyledKanban ref={provided.innerRef} {...provided.droppableProps}>
+                  {columns.map((column, i) => {
+                    if (!column._id) return null;
+                    return (
+                      <Column
+                        key={column._id}
+                        column={column}
+                        index={i}
+                        onDeleteList={deleteBoardListHandler}
+                        onCreate={addTaskHandler}
+                        onUpdateTask={updateTaskHandler}
+                        onDeleteTask={deleteTaskHandler}
                       />
-                    </div>
-
-                    {provided.placeholder}
-                  </StyledKanban>
-                )}
-              </Droppable>
-            </DragDropContext>
-          </>
-        )}
-      </>
+                    );
+                  })}
+                  {provided.placeholder}
+                  <div
+                    style={{
+                      width: '300px',
+                      minWidth: '300px',
+                    }}
+                  >
+                    <AddBoardListForm
+                      onListHandler={addBoardListHandler}
+                      toggleListForm={setShowAddBoardListForm}
+                      show={showAddBoardListForm}
+                    />
+                  </div>
+                </StyledKanban>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </>
+      )}
     </Suspense>
   );
 }

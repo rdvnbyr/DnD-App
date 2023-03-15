@@ -9,22 +9,22 @@ const colors = {
     textColor: '#fff',
   },
   secondary: {
-    main: '#FF0080',
-    light: '#FFDAEC',
-    dark: '#B6005B',
-    textColor: '#fff',
-  },
-  info: {
     main: '#FF7F00',
     light: '#fff5eb',
     dark: '#c46200',
     textColor: '#fff',
   },
-  success: {
-    main: '#00ff80',
-    light: '#d8ffeb',
-    dark: '#00c462',
+  info: {
+    main: '#FF0080',
+    light: '#FFDAEC',
+    dark: '#B6005B',
     textColor: '#fff',
+  },
+  success: {
+    main: '#00ff7f',
+    light: '#ebfff5',
+    dark: '#00b158',
+    textColor: '#565656',
   },
   warning: {
     main: '#ffff00',
