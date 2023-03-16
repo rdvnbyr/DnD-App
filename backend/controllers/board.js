@@ -33,7 +33,6 @@ const createBoard = async (req, res, next) => {
 };
 
 const getBoards = async (req, res, next) => {
-  console.log('boards: ', req.query.workspaceId);
   try {
     const filter = {
       members: {
@@ -51,7 +50,6 @@ const getBoards = async (req, res, next) => {
 };
 
 const getBoard = async (req, res, next) => {
-  console.log('board: ', req.params.boardId);
   try {
     const board = await Board.findById(req.params.boardId);
     if (!board) {
@@ -299,15 +297,23 @@ const getTaskById = async (req, res, next) => {
     ) {
       throw createError(401, 'Not authorized to access this board resource.');
     }
-    const list = board.lists.id(req.params.listId);
-    if (!list) {
-      throw createError(404, 'List not found');
+    for (const list of board.lists) {
+      const task = list.tasks.id(req.params.taskId);
+      if (task) {
+        return res.status(200).json(task);
+      }
     }
-    const task = list.tasks.id(req.params.taskId);
-    if (!task) {
-      throw createError(404, 'Task not found');
-    }
-    res.status(200).json(task);
+
+    throw createError(404, 'Task not found');
+    // const list = board.lists.find((list) => list.tasks.id(req.params.taskId));
+    // if (!list) {
+    //   throw createError(404, 'List not found');
+    // }
+    // const task = list.tasks.id(req.params.taskId);
+    // if (!task) {
+    //   throw createError(404, 'Task not found');
+    // }
+    // res.status(200).json(task);
   } catch (error) {
     next(error);
   }

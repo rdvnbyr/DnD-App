@@ -50,8 +50,9 @@ const StyledContainerInner = styled.div`
 type TaskProps = {
   task: TTask;
   index: number;
+  openTaskDialog: (taskId: string) => void;
 };
-export const Task = ({ task, index }: TaskProps) => (
+export const Task = ({ task, index, openTaskDialog }: TaskProps) => (
   <Draggable draggableId={task._id?.toString()} index={index}>
     {(provided, snapshot) => {
       return (
@@ -60,6 +61,7 @@ export const Task = ({ task, index }: TaskProps) => (
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           isDragging={snapshot.isDragging}
+          onClick={() => openTaskDialog(task._id)}
         >
           {task?.labels && task?.labels.length > 0 && (
             <StyledContainerInner>

@@ -114,11 +114,11 @@ router.patch('/:boardId/lists/:listId/tasks/:taskId', updateTaskById);
 router.delete('/:boardId/lists/:listId/tasks/:taskId', deleteTaskById);
 
 /**
- * @route   GET api/boards/:boardId/lists/:listId/tasks/:taskId
+ * @route   GET api/boards/:boardId/tasks/:taskId
  * @desc    Get a task
  * @access  Private (token required)
  * @returns {task} task object
  */
-router.get('/:boardId/lists/:listId/tasks/:taskId', getTaskById);
+router.get('/:boardId/tasks/:taskId', getTaskById);
 
 module.exports = router;

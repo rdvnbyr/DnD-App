@@ -1,0 +1,55 @@
+version: "3.0"
+services:
+  nginx:
+    build: 
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+      args:
+        - DEFAULT_PORT=80
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./ssl:/etc/nginx/ssl
+    container_name: nginx
+    depends_on:
+      - backend
+      - proxy 
+
+  proxy:
+    build: 
+      context: ./docker/proxy
+      dockerfile: Dockerfile
+      args:
+        - DEFAULT_PORT=80
+    ports:
+      - "80:80"
+    volumes: 
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+  
+  backend:
+    build: 
+      context: ./docker/backend
+      dockerfile: Dockerfile
+      args:
+        - DEFAULT_PORT=80
+    ports:
+      - "80:80"
+    volumes: 
+      - ./backend/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - mongodb
+  
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb:/data/db
+

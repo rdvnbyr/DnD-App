@@ -1,6 +1,6 @@
 import { useEffect, Suspense, useState, useCallback } from 'react';
 import styled from 'styled-components';
-import { useOutletContext } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 import {
   useCreateBoardListMutation,
@@ -203,6 +203,7 @@ function Kanban(props: KanbanProps) {
           </DragDropContext>
         </>
       )}
+      <Outlet />
     </Suspense>
   );
 }

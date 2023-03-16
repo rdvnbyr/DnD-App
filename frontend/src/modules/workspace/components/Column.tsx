@@ -5,6 +5,8 @@ import { BoardList, BoardTask } from '../../../lib/models';
 import { Task } from './Task';
 import { AddTaskForm } from './_partials/AddTaskForm';
 import { Button, Dropdown } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useWorkspaceContext } from '../core/workspace-context';
 
 interface ColumnProps {
   column: BoardList;
@@ -24,6 +26,7 @@ const Column: React.FC<ColumnProps> = ({
   onUpdateTask,
   onDeleteList,
 }) => {
+  const workspaceCtx = useWorkspaceContext();
   const { _id, tasks, name } = column;
   const [showForm, setShowForm] = React.useState<boolean>(false);
 
@@ -47,6 +50,9 @@ const Column: React.FC<ColumnProps> = ({
 
   const deleteTaskHandler = async (listId: string, taskId: string) => {};
 
+  const openTaskDialog = (taskId: string) =>
+    workspaceCtx.openTaskDialog(_id.toString(), taskId);
+
   return (
     <Draggable draggableId={_id.toString()} index={index}>
       {(dragProvided) => (
@@ -56,8 +62,8 @@ const Column: React.FC<ColumnProps> = ({
         >
           <StyledColumnTitle {...dragProvided.dragHandleProps}>
             <span>{name}</span>
-            <Dropdown>
-              <Dropdown.Toggle split variant="secondary" id="dropdown-split-basic" />
+            <Dropdown className="column-actions">
+              <Dropdown.Toggle split variant="dark" id="dropdown-split-basic" />
 
               <Dropdown.Menu>
                 <Dropdown.Item role="button">Join</Dropdown.Item>
@@ -77,7 +83,14 @@ const Column: React.FC<ColumnProps> = ({
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {tasks.map((task, index) => {
-                    return <Task key={task._id} index={index} task={task} />;
+                    return (
+                      <Task
+                        key={task._id}
+                        index={index}
+                        task={task}
+                        openTaskDialog={openTaskDialog}
+                      />
+                    );
                   })}
                   {provided.placeholder}
                 </StyledColumnCard>
@@ -96,24 +109,23 @@ const Column: React.FC<ColumnProps> = ({
 };
 
 const StyledColumnContainer = styled.div`
-  margin: 8px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  background: ${({ theme }) => theme.colors.secondary.light};
+  margin: ${({ theme }) => theme.spacing.sm};
+  border: 1px solid ${({ theme }) => theme.grayscale[300]};
+  border-radius: ${({ theme }) => theme.base.radius};
+  background: ${({ theme }) => theme.grayscale[300]};
   min-width: 300px;
   display: flex;
   flex-direction: column;
-  /* .list-action {
-  } */
 `;
 
-const StyledColumnTitle = styled.h3`
+const StyledColumnTitle = styled.h4`
   padding: 8px;
-  background-color: ${({ theme }) => theme.colors.secondary.main};
-  color: white;
+  background-color: ${({ theme }) => theme.grayscale[100]};
+  color: ${({ theme }) => theme.base.textColor};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.2rem;
 `;
 
 const StyledColumnCard = styled.div<{ isDraggingOver: boolean }>`

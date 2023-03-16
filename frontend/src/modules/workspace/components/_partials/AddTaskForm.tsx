@@ -11,16 +11,22 @@ export const AddTaskForm = ({
   toggleTaskForm,
   show,
 }: AddTaskFormProps) => (
-  <>
-    <button
-      style={{
-        display: !show ? 'block' : 'none',
-      }}
-      className="btn w-100 rounded-0 btn-sm"
-      onClick={() => toggleTaskForm(true)}
-    >
-      Add Task
-    </button>
+  <div className="py-1 px-2">
+    <div className="d-flex flex-row justify-between gap-2">
+      <StyledButton onClick={() => toggleTaskForm(true)} isHidden={show}>
+        <span>+</span>
+        <span>Create new task</span>
+      </StyledButton>
+      <button
+        className="btn btn-sm"
+        style={{
+          display: show ? 'none' : 'block',
+        }}
+      >
+        ...
+      </button>
+    </div>
+
     <form
       onSubmit={onTaskHandler}
       className="p-2 border-1 shadow-1"
@@ -55,9 +61,29 @@ export const AddTaskForm = ({
         </div>
       </div>
     </form>
-  </>
+  </div>
 );
 
 const StyledContainer = styled.div`
   min-width: 240px;
+`;
+
+const StyledButton = styled.a<{ isHidden: boolean }>`
+  cursor: pointer;
+  width: 100%;
+  display: ${({ isHidden }) => (isHidden ? 'none' : 'flex')};
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #495057;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: ${({ theme }) => theme.base.radius};
+  &:hover {
+    color: #495057;
+    text-decoration: none;
+    background-color: #f8f9fa;
+  }
 `;

@@ -16,6 +16,7 @@ import UnauthorizedPage from './pages/UnauthorizedPage';
 import { Dashboard } from './pages/Dashboard';
 import Kanban from './modules/workspace/components/Kanban';
 import { Logout } from './modules/auth/Logout';
+import {TaskDialog} from './modules/workspace/components/TaskDialog';
 
 function App() {
   return (
@@ -37,11 +38,15 @@ function App() {
           <Route element={<ProtectedRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/ws/:wsId" element={<Workspace />}>
-              <Route path="b/:boardId" element={<Kanban />} />
+              <Route path="b/:boardId" element={<Kanban />}>
+                <Route path="t/:taskId" element={<TaskDialog />} />
+              </Route>
             </Route>
 
             <Route path="/profile" element={<div>Dashboard</div>} />
             <Route path="/logout" element={<Logout />} />
+
+            {/* <Route path="*" element={<MissingRoutePage />} /> */}
           </Route>
 
           {/* 404 Page Route */}
