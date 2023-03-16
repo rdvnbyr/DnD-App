@@ -1,18 +1,38 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { Portal } from 'react-portal';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetTaskByIdQuery } from '../core/workspace-api';
+import { useForm } from 'react-hook-form';
+import { TextEditor } from '../../../components/partials';
 
 type TaskDialogProps = {};
 export const TaskDialog = (props: TaskDialogProps) => {
   const { boardId, taskId, wsId } = useParams();
   const navigate = useNavigate();
 
+  const [editorContent, setEditorContent] = useState<string>('');
+  const onEditorChange = (newContent: string) => {
+    setEditorContent(newContent);
+    console.log('Content was updated with onChange: ', newContent);
+  };
+  const onEditorBlur = (newContent: string) => {
+    setEditorContent(newContent);
+    console.log('Content was updated with onBlur: ', newContent);
+  };
+
   const { data, isLoading } = useGetTaskByIdQuery({
     boardId: boardId as string,
     taskId: taskId as string,
   });
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const handleClose = () => {
     navigate(`/ws/${wsId}/b/${boardId}`);
@@ -36,13 +56,31 @@ export const TaskDialog = (props: TaskDialogProps) => {
               <Container>
                 <Row>
                   <Col xs={12} md={9}>
-                    .col-xs-12 .col-md-8
+                    <StyledSection>
+                      <h5>Description</h5>
+                      <p>{data.description}</p>
+                      <TextEditor
+                        content={editorContent}
+                        onBlurHandler={onEditorBlur}
+                        onChangeHandler={onEditorChange}
+                        placeholder="Type here .."
+                      />
+                    </StyledSection>
                   </Col>
                   <Col xs={6} md={3}>
                     <StyledActions>
                       <StyledAction>
+                        <i className="bi bi-person"></i>
+                        Join
+                      </StyledAction>
+                      <StyledAction>
                         <i className="bi bi-pen"></i>
                         Edit
+                      </StyledAction>
+
+                      <StyledAction>
+                        <i className="bi bi-trash2"></i>
+                        Delete
                       </StyledAction>
                     </StyledActions>
                   </Col>
@@ -69,15 +107,20 @@ const StyledModalTitle = styled(Modal.Title)``;
 
 const StyledModalBody = styled(Modal.Body)``;
 
+const StyledSection = styled.div`
+  padding: 0.625rem 0.375rem;
+  margin: 0.375rem 0;
+`;
+
 const StyledActions = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 `;
-
 const StyledAction = styled.button`
   background-color: ${({ theme }) => theme.grayscale[200]};
+  color: ${({ theme }) => theme.grayscale[800]};
   border: none;
   width: 100%;
   display: flex;

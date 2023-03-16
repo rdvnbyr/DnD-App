@@ -7,7 +7,7 @@ import {
   useDeleteWorkspaceMutation,
   useGetUserWorkspacesQuery,
 } from '../modules/workspace/core/workspace-api';
-import { Input } from '../components/partials/FormControl';
+import { Input } from '../components/partials/controls/FormControl';
 import { useState } from 'react';
 import { useAppSelector } from '../app/hooks';
 import { selectAuth } from '../modules/auth/core/auth-slice';

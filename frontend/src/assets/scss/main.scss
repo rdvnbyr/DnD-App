@@ -1,8 +1,9 @@
+
 // Include any default variable overrides here (though functions won't be available)
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css');
 @import './utilities/variables';
 // Import Bootstrap and its default variables
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import '../node_modules/bootstrap/scss/bootstrap';
 // Then add additional custom code here
 @import './utilities/mixins';
 @import './utilities/typography';
@@ -11,3 +12,41 @@
 // components
 @import './components/_button';
 
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  // font-size: 16px;
+  // line-height: 24px;
+  // font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  // min-height: calc(50vh - 120px);
+}
+
+.main-layout {
+  &-content {
+    min-height: calc(99vh - 80px);
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
