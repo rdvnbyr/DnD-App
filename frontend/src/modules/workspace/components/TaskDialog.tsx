@@ -1,38 +1,58 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { Portal } from 'react-portal';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetTaskByIdQuery } from '../core/workspace-api';
-import { useForm } from 'react-hook-form';
+import { useGetTaskByIdQuery, useUpdateTaskMutation } from '../core/workspace-api';
 import { TextEditor } from '../../../components/partials';
+import parse from 'html-react-parser';
 
-type TaskDialogProps = {};
-export const TaskDialog = (props: TaskDialogProps) => {
+export const TaskDialog = () => {
   const { boardId, taskId, wsId } = useParams();
   const navigate = useNavigate();
 
-  const [editorContent, setEditorContent] = useState<string>('');
-  const onEditorChange = (newContent: string) => {
-    setEditorContent(newContent);
-    console.log('Content was updated with onChange: ', newContent);
-  };
-  const onEditorBlur = (newContent: string) => {
-    setEditorContent(newContent);
-    console.log('Content was updated with onBlur: ', newContent);
-  };
-
-  const { data, isLoading } = useGetTaskByIdQuery({
+  const { data, isLoading, refetch } = useGetTaskByIdQuery({
     boardId: boardId as string,
     taskId: taskId as string,
   });
+  const [updateTask] = useUpdateTaskMutation();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const [showTextEditor, setShowTextEditor] = useState<boolean>(false);
+  const [textEditorContent, setTextEditorContent] = useState<string>('');
+
+  useEffect(() => {
+    if (data && data.description) {
+      setTextEditorContent(data.description);
+    }
+
+    return () => {
+      setTextEditorContent('');
+    };
+  }, [data]);
+
+  const onEditorChange = async (newContent: string) => {
+    setTextEditorContent(newContent);
+    updateTask({
+      boardId: boardId as string,
+      taskId: taskId as string,
+      data: {
+        description: newContent,
+      },
+    })
+      .then(() => {
+        refetch();
+        setShowTextEditor(false);
+      })
+      .catch((err) => {
+        setShowTextEditor(false);
+        console.log("Can't update task<ERROR>: ", err?.message);
+        console.log("Can't update task<MESSAGE>", err?.message);
+      });
+  };
+  const onEditorBlur = (newContent: string) => {
+    setTextEditorContent(newContent);
+    console.log('Content was updated with onBlur: ', newContent);
+  };
 
   const handleClose = () => {
     navigate(`/ws/${wsId}/b/${boardId}`);
@@ -57,14 +77,43 @@ export const TaskDialog = (props: TaskDialogProps) => {
                 <Row>
                   <Col xs={12} md={9}>
                     <StyledSection>
-                      <h5>Description</h5>
-                      <p>{data.description}</p>
-                      <TextEditor
-                        content={editorContent}
-                        onBlurHandler={onEditorBlur}
-                        onChangeHandler={onEditorChange}
-                        placeholder="Type here .."
-                      />
+                      <div className="d-flex flex-row align-items-center mb-2">
+                        <div className="fs-5 fw-semibold">Description</div>
+                        {showTextEditor && (
+                          <div className="ms-auto">
+                            <button
+                              onClick={() => setShowTextEditor(false)}
+                              className="btn btn-success btn-sm me-2"
+                            >
+                              Save
+                            </button>
+                            <button
+                              onClick={() => setShowTextEditor(false)}
+                              className="btn btn-link btn-sm text-dark"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                      {!data.description && !showTextEditor && (
+                        <StyledAction onClick={() => setShowTextEditor((prev) => !prev)}>
+                          Add a description to this task
+                        </StyledAction>
+                      )}
+                      {data.description && !showTextEditor && (
+                        <>
+                          <div className="mb-2">{parse(data.description)}</div>
+                        </>
+                      )}
+                      {showTextEditor && (
+                        <TextEditor
+                          content={textEditorContent}
+                          onBlur={onEditorBlur}
+                          onChange={onEditorChange}
+                          placeholder="Type here .."
+                        />
+                      )}
                     </StyledSection>
                   </Col>
                   <Col xs={6} md={3}>

@@ -5,12 +5,12 @@ import type { Jodit } from 'jodit-react';
 type Props = {
   placeholder?: string;
   content: string;
-  onBlurHandler: (newContent: string) => void;
-  onChangeHandler: (newContent: string) => void;
+  onBlur: (newContent: string) => void;
+  onChange: (newContent: string) => void;
 };
 
 export const TextEditor = React.forwardRef((props: Props, ref: React.Ref<Jodit>) => {
-  const { content, onBlurHandler, onChangeHandler, placeholder } = props;
+  const { content, onBlur, onChange, placeholder } = props;
   const config = useMemo(
     () => ({
       readonly: false, // all options from https://xdsoft.net/jodit/doc/
@@ -27,10 +27,6 @@ export const TextEditor = React.forwardRef((props: Props, ref: React.Ref<Jodit>)
         'fontsize',
         'brush',
         'paragraph',
-        'image',
-        'video',
-        'file',
-        'table',
         'link',
         'align',
         'undo',
@@ -45,8 +41,8 @@ export const TextEditor = React.forwardRef((props: Props, ref: React.Ref<Jodit>)
       value={content}
       config={config}
       // tabIndex={1} // tabIndex of textarea
-      onBlur={onBlurHandler} // preferred to use only this option to update the content for performance reasons
-      onChange={onChangeHandler}
+      onBlur={onBlur} // preferred to use only this option to update the content for performance reasons
+      onChange={onChange}
     />
   );
 });

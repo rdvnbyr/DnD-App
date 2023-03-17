@@ -7,7 +7,7 @@
 }
 
 .btn.btn-success {
-  @include btn($success, darken($success, 10%), $white);
+  @include btn($success, darken($success, 10%), $text-color);
 }
 
 .btn.btn-info {

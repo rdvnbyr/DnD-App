@@ -103,7 +103,7 @@ router.post('/:boardId/lists/:listId/tasks', createTask);
  * @access  Private (token required)
  * @returns {board} board object
  */
-router.patch('/:boardId/lists/:listId/tasks/:taskId', updateTaskById);
+router.patch('/:boardId/tasks/:taskId', updateTaskById);
 
 /**
  * @route   DELETE api/boards/:boardId/lists/:listId/tasks/:taskId
@@ -111,7 +111,7 @@ router.patch('/:boardId/lists/:listId/tasks/:taskId', updateTaskById);
  * @access  Private (token required)
  * @returns {board} board object
  */
-router.delete('/:boardId/lists/:listId/tasks/:taskId', deleteTaskById);
+router.delete('/:boardId/tasks/:taskId', deleteTaskById);
 
 /**
  * @route   GET api/boards/:boardId/tasks/:taskId
