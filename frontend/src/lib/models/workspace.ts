@@ -1,5 +1,4 @@
-import { Board } from "./board";
-
+import { Board } from './board';
 
 export interface Workspace {
   boards: Board[];

@@ -8,19 +8,16 @@ type CustomToggleProps = {
   onClick: (e: React.MouseEvent) => void;
 };
 type Ref = HTMLAnchorElement;
-const CustomToggle = React.forwardRef<Ref, CustomToggleProps>(
-  ({ children, onClick }: CustomToggleProps, ref) => (
-    <a
-      href=""
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      {children}
-      &#x25bc;
-    </a>
-  )
-);
-
+const CustomToggle = React.forwardRef<Ref, CustomToggleProps>(({ children, onClick }: CustomToggleProps, ref) => (
+  <a
+    href=""
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+  >
+    {children}
+    &#x25bc;
+  </a>
+));

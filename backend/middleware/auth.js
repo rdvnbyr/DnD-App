@@ -5,15 +5,10 @@ const protect = async (req, res, next) => {
   try {
     let token = null;
     const { authorization } = req.headers;
-    if (
-      authorization &&
-      authorization.startsWith('Bearer') &&
-      authorization.split(' ').length === 2
-    ) {
+    if (authorization && authorization.startsWith('Bearer') && authorization.split(' ').length === 2) {
       token = authorization.split(' ')[1];
     }
-    if (!token && typeof token != 'string')
-      throw createError(401, 'Authentication failed');
+    if (!token && typeof token != 'string') throw createError(401, 'Authentication failed');
     const decodedToken = await jwtService.verify(token);
     req.currentUser = decodedToken;
     next();
@@ -26,11 +21,7 @@ const protectGraphql = async (req, res, next) => {
   try {
     let token = null;
     const { authorization } = req.headers;
-    if (
-      authorization &&
-      authorization.startsWith('Bearer') &&
-      authorization.split(' ').length === 2
-    ) {
+    if (authorization && authorization.startsWith('Bearer') && authorization.split(' ').length === 2) {
       token = authorization.split(' ')[1];
     }
     if (!token && typeof token != 'string') {

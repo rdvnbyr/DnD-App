@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
     "debug": "nodemon --inspect app.js --exec babel-node",
-    "swagger:feed": "node swagger-feed.js"
+    "swagger:feed": "node swagger-feed.js",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,md}\""
   },
   "keywords": [],
   "author": "Ridvan Bayir",
@@ -38,6 +39,7 @@
     "validator": "^13.9.0"
   },
   "devDependencies": {
+    "prettier": "2.8.4",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.1"
   }

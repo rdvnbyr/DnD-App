@@ -18,14 +18,7 @@ interface ColumnProps {
   onDeleteList: (listId: string) => void;
 }
 
-const Column: React.FC<ColumnProps> = ({
-  column,
-  index,
-  onCreate,
-  onDeleteTask,
-  onUpdateTask,
-  onDeleteList,
-}) => {
+const Column: React.FC<ColumnProps> = ({ column, index, onCreate, onDeleteTask, onUpdateTask, onDeleteList }) => {
   const workspaceCtx = useWorkspaceContext();
   const { _id, tasks, name } = column;
   const [showForm, setShowForm] = React.useState<boolean>(false);
@@ -42,24 +35,16 @@ const Column: React.FC<ColumnProps> = ({
     onCreate(newTask, _id.toString());
   };
 
-  const updateTaskHandler = async (
-    newTask: BoardTask,
-    listId: string,
-    taskId: string
-  ) => {};
+  const updateTaskHandler = async (newTask: BoardTask, listId: string, taskId: string) => {};
 
   const deleteTaskHandler = async (listId: string, taskId: string) => {};
 
-  const openTaskDialog = (taskId: string) =>
-    workspaceCtx.openTaskDialog(_id.toString(), taskId);
+  const openTaskDialog = (taskId: string) => workspaceCtx.openTaskDialog(_id.toString(), taskId);
 
   return (
     <Draggable draggableId={_id.toString()} index={index}>
       {(dragProvided) => (
-        <StyledColumnContainer
-          {...dragProvided.draggableProps}
-          ref={dragProvided.innerRef}
-        >
+        <StyledColumnContainer {...dragProvided.draggableProps} ref={dragProvided.innerRef}>
           <StyledColumnTitle {...dragProvided.dragHandleProps}>
             <span>{name}</span>
             <Dropdown className="column-actions">
@@ -83,25 +68,14 @@ const Column: React.FC<ColumnProps> = ({
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {tasks.map((task, index) => {
-                    return (
-                      <Task
-                        key={task._id}
-                        index={index}
-                        task={task}
-                        openTaskDialog={openTaskDialog}
-                      />
-                    );
+                    return <Task key={task._id} index={index} task={task} openTaskDialog={openTaskDialog} />;
                   })}
                   {provided.placeholder}
                 </StyledColumnCard>
               );
             }}
           </Droppable>
-          <AddTaskForm
-            onTaskHandler={addTaskHandler}
-            toggleTaskForm={setShowForm}
-            show={showForm}
-          />
+          <AddTaskForm onTaskHandler={addTaskHandler} toggleTaskForm={setShowForm} show={showForm} />
         </StyledColumnContainer>
       )}
     </Draggable>

@@ -11,7 +11,7 @@ const graphql = require('./graphql');
 const morgan = require('morgan');
 require('colors');
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs','app.log'), {
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'app.log'), {
   flags: 'a',
 });
 

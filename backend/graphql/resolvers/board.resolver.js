@@ -44,9 +44,7 @@ module.exports = {
     if (!board) {
       throw createError(404, 'Board not found.');
     }
-    const isUserInBoard = board.users.some(
-      (user) => user.userId.toString() === req.currentUser.id
-    );
+    const isUserInBoard = board.users.some((user) => user.userId.toString() === req.currentUser.id);
     if (!isUserInBoard) {
       throw createError(401, 'Not authorized.');
     }
@@ -64,9 +62,7 @@ module.exports = {
     if (!board) {
       throw createError(404, 'Board not found.');
     }
-    const isUserInBoard = board.users.some(
-      (user) => user.userId.toString() === req.currentUser.id
-    );
+    const isUserInBoard = board.users.some((user) => user.userId.toString() === req.currentUser.id);
     if (!isUserInBoard) {
       throw createError(401, 'Not authorized.');
     }
@@ -96,9 +92,7 @@ module.exports = {
     if (!board) {
       throw createError(404, 'Board not found.');
     }
-    const isUserInBoard = board.users.some(
-      (user) => user.userId.toString() === req.currentUser.id
-    );
+    const isUserInBoard = board.users.some((user) => user.userId.toString() === req.currentUser.id);
     if (!isUserInBoard) {
       throw createError(401, 'Not authorized.');
     }

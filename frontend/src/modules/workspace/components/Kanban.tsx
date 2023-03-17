@@ -37,7 +37,12 @@ function Kanban(props: KanbanProps) {
   const [createListTask] = useCreateTaskMutation();
   const [UpdateListTask] = useUpdateTaskMutation();
   const [DeleteListTask] = useDeleteTaskMutation();
-  const { isSuccess, data: board, refetch, isError } = useGetBoardByIdQuery({
+  const {
+    isSuccess,
+    data: board,
+    refetch,
+    isError,
+  } = useGetBoardByIdQuery({
     boardId,
   });
 
@@ -69,10 +74,7 @@ function Kanban(props: KanbanProps) {
       });
   };
 
-  const updateBoardListHandler = useCallback(
-    async (listId: string, newList: Omit<BoardList, '_id'>) => {},
-    []
-  );
+  const updateBoardListHandler = useCallback(async (listId: string, newList: Omit<BoardList, '_id'>) => {}, []);
 
   const deleteBoardListHandler = useCallback(async (listId: string) => {
     deleteBoardList({
@@ -85,36 +87,27 @@ function Kanban(props: KanbanProps) {
       });
   }, []);
 
-  const addTaskHandler = useCallback(
-    async (newTask: Omit<BoardTask, '_id'>, listId: string) => {
-      createListTask({
-        boardId: boardId,
-        listId: listId,
-        task: newTask,
-      })
-        .unwrap()
-        .then((res) => {
-          setColumns(res.lists);
-        });
-    },
-    []
-  );
+  const addTaskHandler = useCallback(async (newTask: Omit<BoardTask, '_id'>, listId: string) => {
+    createListTask({
+      boardId: boardId,
+      listId: listId,
+      task: newTask,
+    })
+      .unwrap()
+      .then((res) => {
+        setColumns(res.lists);
+      });
+  }, []);
 
-  const updateTaskHandler = useCallback(
-    async (newTask: Omit<BoardTask, '_id'>, listId: string, taskId: string) => {},
-    []
-  );
+  const updateTaskHandler = useCallback(async (newTask: Omit<BoardTask, '_id'>, listId: string, taskId: string) => {},
+  []);
 
   const deleteTaskHandler = useCallback(async (listId: string, taskId: string) => {}, []);
 
   const onDragEnd = async (result: DropResult) => {
     const { destination, source, draggableId, type } = result;
     if (!destination) return;
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    )
-      return;
+    if (destination.droppableId === source.droppableId && destination.index === source.index) return;
     const currentColumns = JSON.parse(JSON.stringify(columns)) as BoardList[];
 
     if (type === 'COLUMN') {
@@ -123,19 +116,13 @@ function Kanban(props: KanbanProps) {
       const [removed] = currentColumns.splice(start, 1);
       currentColumns.splice(finish, 0, removed);
     } else if (type === 'TASK') {
-      const start = currentColumns.find(
-        (col) => col._id.toString() === source.droppableId
-      )!;
-      const finish = currentColumns.find(
-        (col) => col._id.toString() === destination.droppableId
-      )!;
+      const start = currentColumns.find((col) => col._id.toString() === source.droppableId)!;
+      const finish = currentColumns.find((col) => col._id.toString() === destination.droppableId)!;
       if (start?._id.toString() === finish?._id.toString()) {
         const currentTasks = JSON.parse(JSON.stringify(start?.tasks)) || [];
         const [removed] = currentTasks.splice(source.index, 1);
         currentTasks.splice(destination.index, 0, removed);
-        const colIndex = currentColumns.findIndex(
-          (col) => col._id.toString() === start?._id.toString()
-        );
+        const colIndex = currentColumns.findIndex((col) => col._id.toString() === start?._id.toString());
         currentColumns[colIndex].tasks = currentTasks;
       } else {
         const [removed] = start?.tasks.splice(source.index, 1) || [];

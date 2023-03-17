@@ -1,63 +1,63 @@
 .btn.btn-primary {
-    @include btn($primary, darken($primary, 10%), $white);
+  @include btn($primary, darken($primary, 10%), $white);
 }
 
 .btn.btn-secondary {
-    @include btn($secondary, darken($secondary, 10%), $white);
+  @include btn($secondary, darken($secondary, 10%), $white);
 }
 
 .btn.btn-success {
-    @include btn($success, darken($success, 10%), $white);
+  @include btn($success, darken($success, 10%), $white);
 }
 
 .btn.btn-info {
-    @include btn($info, darken($info, 10%), $white);
+  @include btn($info, darken($info, 10%), $white);
 }
 
 .btn.btn-warning {
-    @include btn($warning, darken($warning, 10%), $white);
+  @include btn($warning, darken($warning, 10%), $white);
 }
 
 .btn.btn-danger {
-    @include btn($danger, darken($danger, 10%), $white);
+  @include btn($danger, darken($danger, 10%), $white);
 }
 
 .btn.btn-light {
-    @include btn($light, darken($light, 10%), $white);
+  @include btn($light, darken($light, 10%), $white);
 }
 
 .btn.btn-dark {
-    @include btn($dark, darken($dark, 10%), $white);
+  @include btn($dark, darken($dark, 10%), $white);
 }
 
 .btn.btn-white {
-    @include btn($white, darken($white, 10%), $white);
+  @include btn($white, darken($white, 10%), $white);
 }
 
 .btn.btn-black {
-    @include btn($black, darken($black, 10%), $white);
+  @include btn($black, darken($black, 10%), $white);
 }
 
 .btn.btn-link {
+  background-color: transparent;
+  border-color: transparent;
+  color: $primary;
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus,
+  &:active {
     background-color: transparent;
     border-color: transparent;
     color: $primary;
-    font-weight: 600;
-    padding: 0;
     text-decoration: underline;
+  }
 
-    &:hover,
-    &:focus,
-    &:active {
-        background-color: transparent;
-        border-color: transparent;
-        color: $primary;
-        text-decoration: underline;
-    }
-
-    &:active {
-        box-shadow: none;
-        color: $primary;
-        transform: scale(0.99);
-    }
+  &:active {
+    box-shadow: none;
+    color: $primary;
+    transform: scale(0.99);
+  }
 }

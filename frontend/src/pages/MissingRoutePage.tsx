@@ -6,10 +6,7 @@ function MissingRoutePage() {
     <StyledMissingRoutePage className="container text-center missing-page">
       <h1 className="missing-page-first-title">OOps!</h1>
       <h1 className=" text-capitalize text-dark">404 - Page Not Found</h1>
-      <p>
-        The page you are looking for might have been removed had its name changed or is
-        temporarily unavailable.
-      </p>
+      <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
       <Link to="/" className="btn btn-primary btn-lg m-4">
         Go To Home
       </Link>

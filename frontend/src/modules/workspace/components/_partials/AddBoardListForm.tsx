@@ -3,11 +3,7 @@ type AddBoardFormProps = {
   toggleListForm: React.Dispatch<React.SetStateAction<boolean>>;
   show: boolean;
 };
-export const AddBoardListForm = ({
-  onListHandler,
-  toggleListForm,
-  show,
-}: AddBoardFormProps) => {
+export const AddBoardListForm = ({ onListHandler, toggleListForm, show }: AddBoardFormProps) => {
   return (
     <div className="mt-2 ">
       <button

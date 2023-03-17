@@ -76,11 +76,7 @@ export const Task = ({ task, index, openTaskDialog }: TaskProps) => (
           </StyledContainerInner>
           <StyledContainerInner> {task.name}</StyledContainerInner>
           <StyledContainerInner>
-            {task.createdAt && (
-              <span className="task-action-span task-date">
-                {_formatDate(task.createdAt)}
-              </span>
-            )}
+            {task.createdAt && <span className="task-action-span task-date">{_formatDate(task.createdAt)}</span>}
           </StyledContainerInner>
         </StyledContainer>
       );

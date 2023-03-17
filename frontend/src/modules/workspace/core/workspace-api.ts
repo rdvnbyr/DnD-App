@@ -47,10 +47,7 @@ export const workspaceApi = createApi({
         };
       },
     }),
-    updateBoard: builder.mutation<
-      void,
-      { id: string; workspaceId: string; data: Partial<BoardCredentials> }
-    >({
+    updateBoard: builder.mutation<void, { id: string; workspaceId: string; data: Partial<BoardCredentials> }>({
       query: (body) => {
         return {
           url: `/boards/${body.id}`,
@@ -97,10 +94,7 @@ export const workspaceApi = createApi({
       },
     }),
 
-    createBoardList: builder.mutation<
-      BoardCredentials[],
-      { list: Omit<BoardList, '_id'>; boardId: string }
-    >({
+    createBoardList: builder.mutation<BoardCredentials[], { list: Omit<BoardList, '_id'>; boardId: string }>({
       query: (body) => {
         const { list, boardId } = body;
         return {
@@ -111,10 +105,7 @@ export const workspaceApi = createApi({
       },
     }),
 
-    deleteBoardList: builder.mutation<
-      BoardCredentials,
-      { listId: string; boardId: string }
-    >({
+    deleteBoardList: builder.mutation<BoardCredentials, { listId: string; boardId: string }>({
       query: ({ listId, boardId }) => {
         return {
           url: `/boards/${boardId}/lists/${listId}`,

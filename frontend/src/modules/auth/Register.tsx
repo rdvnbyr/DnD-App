@@ -46,9 +46,7 @@ export const Register = () => {
       </div>
       {error && (
         <div className="alert alert-danger" role="alert">
-          {typeof error === 'string'
-            ? error
-            : 'Something went wrong. Please try again later.'}
+          {typeof error === 'string' ? error : 'Something went wrong. Please try again later.'}
         </div>
       )}
       <div className="w-100">
@@ -82,11 +80,7 @@ export const Register = () => {
         >
           Save
           {isLoading && (
-            <span
-              className="spinner-border spinner-border-sm ms-2"
-              role="status"
-              aria-hidden="true"
-            ></span>
+            <span className="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
           )}
         </button>
       </>

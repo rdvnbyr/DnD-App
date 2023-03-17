@@ -82,10 +82,7 @@ export const Dashboard = () => {
               Boards
             </Link>
             <div className="border-top border-1 border-secondary my-2"></div>
-            <button
-              className="btn btn-outline-secondary btn-sm mt-2"
-              onClick={() => setShowBoardForm((prev) => !prev)}
-            >
+            <button className="btn btn-outline-secondary btn-sm mt-2" onClick={() => setShowBoardForm((prev) => !prev)}>
               <i className="bi bi-asterisk"></i> Create Board
             </button>
             {showBoardForm && (
@@ -121,10 +118,7 @@ export const Dashboard = () => {
                 </button>
               </form>
             )}
-            <button
-              className="btn btn-outline-secondary btn-sm mt-2"
-              onClick={() => setShowForm((prev) => !prev)}
-            >
+            <button className="btn btn-outline-secondary btn-sm mt-2" onClick={() => setShowForm((prev) => !prev)}>
               {plusIcon} Create Workspace
             </button>
             {showForm && (
@@ -155,16 +149,11 @@ export const Dashboard = () => {
                   {data &&
                     data.length > 0 &&
                     data.map((workspace) => (
-                      <li
-                        key={workspace._id}
-                        className="list-group-item list-group-item-action my-1 border-0 p-0"
-                      >
+                      <li key={workspace._id} className="list-group-item list-group-item-action my-1 border-0 p-0">
                         <button
                           className="btn d-flex justify-content-between align-items-center w-100 px-1 py-2"
                           onClick={() => {
-                            document
-                              .querySelector(`#workspace-actions-${workspace._id}`)
-                              ?.classList.toggle('d-none');
+                            document.querySelector(`#workspace-actions-${workspace._id}`)?.classList.toggle('d-none');
                           }}
                         >
                           <span className="fw-semibold text-dark">{workspace.name}</span>
@@ -172,16 +161,10 @@ export const Dashboard = () => {
                             {<i className="bi bi-chevron-compact-down"></i>}
                           </span>
                         </button>
-                        <ul
-                          id={`workspace-actions-${workspace._id}`}
-                          className="list-group list-group-flush d-none"
-                        >
+                        <ul id={`workspace-actions-${workspace._id}`} className="list-group list-group-flush d-none">
                           {/* some action buttons */}
                           <li className="list-group-item list-group-item-action">
-                            <Link
-                              to={`/ws/${workspace._id}`}
-                              className="btn btn-sm btn-outline-secondary w-100 my-1"
-                            >
+                            <Link to={`/ws/${workspace._id}`} className="btn btn-sm btn-outline-secondary w-100 my-1">
                               {plusIcon} Boards
                             </Link>
                             <button
@@ -216,13 +199,7 @@ export const Dashboard = () => {
                             className="col-sm-4 gx-3 gy-2"
                             to={`/ws/${workspace._id}/b/${board._id}`}
                           >
-                            <div
-                              className={_classNames(
-                                'card',
-                                'bg-dark',
-                                'text-white'
-                              )}
-                            >
+                            <div className={_classNames('card', 'bg-dark', 'text-white')}>
                               <div className="card-body">
                                 <h5 className="card-title">{board.name}</h5>
                                 <p className="card-text">{board.description}</p>

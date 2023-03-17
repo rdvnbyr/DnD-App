@@ -1,11 +1,4 @@
-export type {
-  TaskActivity,
-  Task,
-  BoardList,
-  BoardCredentials,
-  Board,
-  BoardTask
-} from './board';
+export type { TaskActivity, Task, BoardList, BoardCredentials, Board, BoardTask } from './board';
 
 export type { UserCredentials, UserResponse, User } from './user';
 

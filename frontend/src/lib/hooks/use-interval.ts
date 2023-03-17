@@ -20,11 +20,7 @@ export const useInterval = (callback: () => void, delay: number | null) => {
   }, [delay]);
 };
 
-export function useDebounce(
-  callback: Function,
-  timeout: number = 200,
-  deps: Array<any> = []
-) {
+export function useDebounce(callback: Function, timeout: number = 200, deps: Array<any> = []) {
   const data = useRef({ firstTime: true });
   useEffect(() => {
     const { firstTime, clearFunc } = data.current;
@@ -42,12 +38,7 @@ export function useDebounce(
   }, [timeout, ...deps]);
 }
 
-
-export const useThrottle = (
-  callback: Function,
-  delay: number = 200,
-  deps: Array<any> = []
-) => {
+export const useThrottle = (callback: Function, delay: number = 200, deps: Array<any> = []) => {
   const lastRan = useRef(Date.now());
 
   useEffect(() => {

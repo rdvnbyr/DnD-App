@@ -16,7 +16,7 @@ import UnauthorizedPage from './pages/UnauthorizedPage';
 import { Dashboard } from './pages/Dashboard';
 import Kanban from './modules/workspace/components/Kanban';
 import { Logout } from './modules/auth/Logout';
-import {TaskDialog} from './modules/workspace/components/TaskDialog';
+import { TaskDialog } from './modules/workspace/components/TaskDialog';
 
 function App() {
   return (

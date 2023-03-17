@@ -11,11 +11,7 @@ const Item: React.FC<ItemProps> = ({ text, index }) => {
   return (
     <Draggable draggableId={text} index={index}>
       {(provided) => (
-        <StyledItem
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
+        <StyledItem ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           {text}
         </StyledItem>
       )}

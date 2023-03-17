@@ -8,9 +8,5 @@ export function Logout() {
   const token = useAppSelector(selectAuth).token;
   const { isSuccess } = useLogoutQuery(token ? token : '');
 
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      {isSuccess && <Navigate to="/" />}
-    </Suspense>
-  );
+  return <Suspense fallback={<div>Loading...</div>}>{isSuccess && <Navigate to="/" />}</Suspense>;
 }

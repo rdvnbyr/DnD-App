@@ -1,9 +1,4 @@
-export {
-  FormControlWrapper,
-  Input,
-  TextAreaControlWrapper,
-  TextAreaInput,
-} from './controls/FormControl';
+export { FormControlWrapper, Input, TextAreaControlWrapper, TextAreaInput } from './controls/FormControl';
 
 export { FormTextField } from './controls/TextField';
 

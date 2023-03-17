@@ -26,12 +26,9 @@ export const workspaceSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addMatcher(
-      workspaceApi.endpoints.getUserWorkspaces.matchFulfilled,
-      (state, action) => {
-        state.workspaces = action.payload;
-      }
-    );
+    builder.addMatcher(workspaceApi.endpoints.getUserWorkspaces.matchFulfilled, (state, action) => {
+      state.workspaces = action.payload;
+    });
   },
 });
 

@@ -47,11 +47,7 @@ export const Login = () => {
           </div>
         )}
         <div className="w-100">
-          <FormControlWrapper
-            label="Email"
-            error={errors.email?.message}
-            {...register('email', { required: true })}
-          />
+          <FormControlWrapper label="Email" error={errors.email?.message} {...register('email', { required: true })} />
         </div>
         <div className="w-100">
           <FormControlWrapper
@@ -69,17 +65,13 @@ export const Login = () => {
             'px-5',
             'mt-3',
             'w-100',
-            "rounded-0",
+            'rounded-0',
             isLoading ? 'disabled' : ''
           )}
         >
           {!isLoading && <span>Login</span>}
           {isLoading && (
-            <span
-              className="spinner-border spinner-border-sm ms-2"
-              role="status"
-              aria-hidden="true"
-            ></span>
+            <span className="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
           )}
         </button>
         <div className="mt-4">

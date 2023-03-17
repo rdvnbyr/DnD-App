@@ -3,10 +3,7 @@ import { TextField, TextFieldProps } from '@mui/material';
 
 type InputProps = TextFieldProps & {};
 export const FormTextField = React.forwardRef(
-  (
-    { variant = 'standard', label, error, helperText, ...restProps }: InputProps,
-    ref: React.Ref<HTMLInputElement>
-  ) => {
+  ({ variant = 'standard', label, error, helperText, ...restProps }: InputProps, ref: React.Ref<HTMLInputElement>) => {
     return (
       <TextField
         ref={ref}
@@ -14,7 +11,7 @@ export const FormTextField = React.forwardRef(
         label={label}
         error={!!error}
         helperText={helperText}
-        fullWidth 
+        fullWidth
         {...restProps}
       />
     );

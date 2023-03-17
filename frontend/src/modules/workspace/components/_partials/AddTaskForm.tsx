@@ -6,11 +6,7 @@ type AddTaskFormProps = {
   show: boolean;
 };
 
-export const AddTaskForm = ({
-  onTaskHandler,
-  toggleTaskForm,
-  show,
-}: AddTaskFormProps) => (
+export const AddTaskForm = ({ onTaskHandler, toggleTaskForm, show }: AddTaskFormProps) => (
   <div className="py-1 px-2">
     <div className="d-flex flex-row justify-between gap-2">
       <StyledButton onClick={() => toggleTaskForm(true)} isHidden={show}>

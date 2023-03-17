@@ -1,14 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { protect } = require('../middleware/auth');
-const {
-  createUser,
-  login,
-  logout,
-  updateUser,
-  getMe,
-  deleteUser,
-} = require('../controllers/user');
+const { createUser, login, logout, updateUser, getMe, deleteUser } = require('../controllers/user');
 
 /**
  * @route   POST api/users

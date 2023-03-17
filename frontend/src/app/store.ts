@@ -20,7 +20,7 @@ const persistConfigs = {
   workspace: {
     key: 'tsx-client-workspace',
     storage,
-    whitelist: ["workspaces"],
+    whitelist: ['workspaces'],
   },
   workspaceApi: {
     key: 'tsx-client-workspace-api',
@@ -34,10 +34,7 @@ const store = configureStore({
     auth: persistReducer(persistConfigs.auth, authReducer),
     [authApi.reducerPath]: persistReducer(persistConfigs.authApi, authApi.reducer),
     workspace: persistReducer(persistConfigs.workspace, workspaceReducer),
-    [workspaceApi.reducerPath]: persistReducer(
-      persistConfigs.workspaceApi,
-      workspaceApi.reducer
-    ),
+    [workspaceApi.reducerPath]: persistReducer(persistConfigs.workspaceApi, workspaceApi.reducer),
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>

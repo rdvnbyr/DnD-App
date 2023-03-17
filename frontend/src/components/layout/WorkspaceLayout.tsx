@@ -10,7 +10,7 @@ export const WorkspaceLayout = ({ children, menuItems }: WorkspaceLayoutProps) =
   return (
     <div className="container-fluid p-0 d-flex">
       <SidebarLayout menuItems={menuItems} />
-      <StyledMain className=''>{children}</StyledMain>
+      <StyledMain className="">{children}</StyledMain>
     </div>
   );
 };

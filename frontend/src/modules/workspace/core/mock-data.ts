@@ -59,7 +59,6 @@ export const colors = {
   GREEN500: '#66BB6A',
 };
 
-
 /* 
 
     // Make sure we have a valid destination

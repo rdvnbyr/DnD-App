@@ -15,40 +15,25 @@ interface TextAreaControlProps extends TextAreaProps {
   error?: string;
 }
 
-export const TextAreaInput = React.forwardRef(
-  (props: TextAreaProps, ref: React.Ref<HTMLTextAreaElement>) => {
-    return (
-      <textarea className="form-control rounded-0 shadow-none m-0" ref={ref} {...props} />
-    );
-  }
-);
+export const TextAreaInput = React.forwardRef((props: TextAreaProps, ref: React.Ref<HTMLTextAreaElement>) => {
+  return <textarea className="form-control rounded-0 shadow-none m-0" ref={ref} {...props} />;
+});
 
-export const Input = React.forwardRef(
-  (props: InputProps, ref: React.Ref<HTMLInputElement>) => {
-    const { type, ...restProps } = props;
-    return (
-      <input
-        className="form-control rounded-0 shadow-none m-0"
-        type={type || 'text'}
-        ref={ref}
-        {...restProps}
-      />
-    );
-  }
-);
+export const Input = React.forwardRef((props: InputProps, ref: React.Ref<HTMLInputElement>) => {
+  const { type, ...restProps } = props;
+  return <input className="form-control rounded-0 shadow-none m-0" type={type || 'text'} ref={ref} {...restProps} />;
+});
 
-export const FormControlWrapper = React.forwardRef(
-  (props: FormControlProps, ref: React.Ref<HTMLInputElement>) => {
-    const { error, label, ...restProps } = props;
-    return (
-      <StyledFormControlWrapper>
-        {label && <label className="form-label">{label}</label>}
-        <Input {...restProps} ref={ref} />
-        {error && <span>{error}</span>}
-      </StyledFormControlWrapper>
-    );
-  }
-);
+export const FormControlWrapper = React.forwardRef((props: FormControlProps, ref: React.Ref<HTMLInputElement>) => {
+  const { error, label, ...restProps } = props;
+  return (
+    <StyledFormControlWrapper>
+      {label && <label className="form-label">{label}</label>}
+      <Input {...restProps} ref={ref} />
+      {error && <span>{error}</span>}
+    </StyledFormControlWrapper>
+  );
+});
 
 export const TextAreaControlWrapper = React.forwardRef(
   (props: TextAreaControlProps, ref: React.Ref<HTMLTextAreaElement>) => {

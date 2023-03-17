@@ -17,14 +17,7 @@ export function Header({ isAuthenticated }: HeaderProps) {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">
-            <img
-              alt="d&d"
-              src={logo}
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />{' '}
-            Tsx-d&d
+            <img alt="d&d" src={logo} width="30" height="30" className="d-inline-block align-top" /> Tsx-d&d
           </Navbar.Brand>
           <Nav>
             {navigation.map((item) => (
