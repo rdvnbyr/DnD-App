@@ -1,8 +1,45 @@
 import styled from 'styled-components';
-
 import { Draggable } from 'react-beautiful-dnd';
 import { Task as TTask } from '../../../lib/models';
 import { _formatDate } from '../../../lib/utils';
+import { v4 as uuidv4 } from 'uuid';
+
+type TaskProps = {
+  task: TTask;
+  index: number;
+  openTaskDialog: (taskId: string) => void;
+};
+export const Task = ({ task, index, openTaskDialog }: TaskProps) => (
+  <Draggable draggableId={task._id?.toString()} index={index}>
+    {(provided, snapshot) => {
+      return (
+        <StyledContainer
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+          onClick={() => openTaskDialog(task._id)}
+        >
+          {task?.labels && task?.labels.length > 0 && (
+            <StyledContainerInner>
+              {task.labels.map((label) => (
+                <span key={uuidv4()} className={`task-label-span task-${label}`}></span>
+              ))}
+            </StyledContainerInner>
+          )}
+          <StyledContainerInner>
+            <span className={`task-label-span task-bug`}></span>
+            <span className={`task-label-span task-bug`}></span>
+          </StyledContainerInner>
+          <StyledContainerInner> {task.name}</StyledContainerInner>
+          <StyledContainerInner>
+            {task.createdAt && <span className="task-action-span task-date">{_formatDate(task.createdAt)}</span>}
+          </StyledContainerInner>
+        </StyledContainer>
+      );
+    }}
+  </Draggable>
+);
 
 const StyledContainer = styled.div<{ isDragging: boolean }>`
   border: 1px solid lightgrey;
@@ -46,40 +83,3 @@ const StyledContainerInner = styled.div`
     }
   }
 `;
-
-type TaskProps = {
-  task: TTask;
-  index: number;
-  openTaskDialog: (taskId: string) => void;
-};
-export const Task = ({ task, index, openTaskDialog }: TaskProps) => (
-  <Draggable draggableId={task._id?.toString()} index={index}>
-    {(provided, snapshot) => {
-      return (
-        <StyledContainer
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-          isDragging={snapshot.isDragging}
-          onClick={() => openTaskDialog(task._id)}
-        >
-          {task?.labels && task?.labels.length > 0 && (
-            <StyledContainerInner>
-              {task.labels.map((label) => (
-                <span className={`task-label-span task-${label}`}></span>
-              ))}
-            </StyledContainerInner>
-          )}
-          <StyledContainerInner>
-            <span className={`task-label-span task-bug`}></span>
-            <span className={`task-label-span task-bug`}></span>
-          </StyledContainerInner>
-          <StyledContainerInner> {task.name}</StyledContainerInner>
-          <StyledContainerInner>
-            {task.createdAt && <span className="task-action-span task-date">{_formatDate(task.createdAt)}</span>}
-          </StyledContainerInner>
-        </StyledContainer>
-      );
-    }}
-  </Draggable>
-);

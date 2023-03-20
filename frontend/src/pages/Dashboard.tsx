@@ -31,7 +31,7 @@ export const Dashboard = () => {
     e.preventDefault();
     const name = (e.target as HTMLFormElement).dnd_create_board.value;
     const wsId = (e.target as HTMLFormElement).dnd_create_board_ws_id.value;
-    const board: Board = {
+    const board: Omit<Board, '_id'> = {
       name: name,
       workspaceId: wsId,
       lists: [],
@@ -60,7 +60,6 @@ export const Dashboard = () => {
     const name = (e.target as HTMLFormElement).dnd_create_workspace.value;
     createWorkspace({
       name,
-      users: [{ userId: user.id, permissions: 'admin' }],
       boards: [],
       owner: user.id,
     })

@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import { BoardList, BoardTask } from '../../../lib/models';
 import { Task } from './Task';
 import { AddTaskForm } from './_partials/AddTaskForm';
-import { Button, Dropdown } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { useWorkspaceContext } from '../core/workspace-context';
 
 interface ColumnProps {
@@ -35,9 +34,13 @@ const Column: React.FC<ColumnProps> = ({ column, index, onCreate, onDeleteTask, 
     onCreate(newTask, _id.toString());
   };
 
-  const updateTaskHandler = async (newTask: BoardTask, listId: string, taskId: string) => {};
+  const updateTaskHandler = async (newTask: BoardTask, listId: string, taskId: string) => {
+    console.log('updateTaskHandler', { newTask, listId, taskId });
+  };
 
-  const deleteTaskHandler = async (listId: string, taskId: string) => {};
+  const deleteTaskHandler = async (listId: string, taskId: string) => {
+    console.log('deleteTaskHandler', { listId, taskId });
+  };
 
   const openTaskDialog = (taskId: string) => workspaceCtx.openTaskDialog(_id.toString(), taskId);
 
@@ -47,16 +50,14 @@ const Column: React.FC<ColumnProps> = ({ column, index, onCreate, onDeleteTask, 
         <StyledColumnContainer {...dragProvided.draggableProps} ref={dragProvided.innerRef}>
           <StyledColumnTitle {...dragProvided.dragHandleProps}>
             <span>{name}</span>
-            <Dropdown className="column-actions">
-              <Dropdown.Toggle split variant="dark" id="dropdown-split-basic" />
-
-              <Dropdown.Menu>
-                <Dropdown.Item role="button">Join</Dropdown.Item>
-                <Dropdown.Item role="button" onClick={() => onDeleteList(_id.toString())}>
-                  Delete List
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <StyledBootstrapDropdownButton size="sm" title="" variant='default'>
+              {/* <Dropdown.ItemText>Seperator</Dropdown.ItemText> */}
+              <Dropdown.Item as="button">Join</Dropdown.Item>
+              {/* <Dropdown.Divider /> */}
+              <Dropdown.Item as="button" onClick={() => onDeleteList(_id.toString())}>
+                Delete List
+              </Dropdown.Item>
+            </StyledBootstrapDropdownButton>
           </StyledColumnTitle>
 
           <Droppable droppableId={_id.toString()} type="TASK">
@@ -109,14 +110,26 @@ const StyledColumnCard = styled.div<{ isDraggingOver: boolean }>`
   transition: background-color 0.2s ease;
 `;
 
-const StyledList = styled.div({
-  backgroundColor: '#ddd',
-  borderRadius: 8,
-  padding: 8,
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1,
-  marginTop: 8,
-});
+// const StyledList = styled.div({
+//   backgroundColor: '#ddd',
+//   borderRadius: 8,
+//   padding: 8,
+//   display: 'flex',
+//   flexDirection: 'column',
+//   flexGrow: 1,
+//   marginTop: 8,
+// });
+
+const StyledBootstrapDropdownButton = styled(DropdownButton)`
+  background-color: ${({ theme }) => theme.grayscale[100]};
+  border: none;
+  color: ${({ theme }) => theme.base.textColor};
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
+  &:hover {
+    background-color: ${({ theme }) => theme.grayscale[100]};
+  }
+`;
 
 export default Column;

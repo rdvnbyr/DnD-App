@@ -19,10 +19,10 @@ export const workspaceApi = createApi({
     getUserWorkspaces: builder.query<Workspace[], string>({
       query: () => `/workspaces`,
     }),
-    getWorkspace: builder.query({
+    getWorkspace: builder.query<Workspace, string>({
       query: (id) => `/workspaces/${id}`,
     }),
-    createWorkspace: builder.mutation({
+    createWorkspace: builder.mutation<Workspace, Omit<Workspace, '_id'>>({
       query: (body) => ({
         url: `/workspaces`,
         method: 'POST',
@@ -30,7 +30,7 @@ export const workspaceApi = createApi({
       }),
     }),
 
-    deleteWorkspace: builder.mutation({
+    deleteWorkspace: builder.mutation<void, string>({
       query: (id) => ({
         url: `/workspaces/${id}`,
         method: 'DELETE',
@@ -38,7 +38,7 @@ export const workspaceApi = createApi({
     }),
 
     // Board endpoints here
-    createBoard: builder.mutation<void, BoardCredentials>({
+    createBoard: builder.mutation<void, Omit<BoardCredentials, '_id'>>({
       query: (body) => {
         return {
           url: `/boards`,
@@ -49,7 +49,7 @@ export const workspaceApi = createApi({
     }),
     updateBoard: builder.mutation<
       void,
-      { id: string; workspaceId: string; data: Partial<BoardCredentials> }
+      { id: string; workspaceId: string; data: Partial<Omit<BoardCredentials, '_id'>> }
     >({
       query: (body) => {
         return {
@@ -73,7 +73,7 @@ export const workspaceApi = createApi({
       },
     }),
     getBoards: builder.query<BoardCredentials[], string>({
-      query: (id) => `/boards`,
+      query: () => `/boards`,
     }),
     getBoardById: builder.query<BoardCredentials, { boardId: string }>({
       query: ({ boardId }) => `/boards/${boardId}`,
@@ -97,10 +97,7 @@ export const workspaceApi = createApi({
       },
     }),
 
-    createBoardList: builder.mutation<
-      BoardCredentials[],
-      { list: Omit<BoardList, '_id'>; boardId: string }
-    >({
+    createBoardList: builder.mutation<BoardCredentials[], { list: Omit<BoardList, '_id'>; boardId: string }>({
       query: (body) => {
         const { list, boardId } = body;
         return {
@@ -111,10 +108,7 @@ export const workspaceApi = createApi({
       },
     }),
 
-    deleteBoardList: builder.mutation<
-      BoardCredentials,
-      { listId: string; boardId: string }
-    >({
+    deleteBoardList: builder.mutation<BoardCredentials, { listId: string; boardId: string }>({
       query: ({ listId, boardId }) => {
         return {
           url: `/boards/${boardId}/lists/${listId}`,
