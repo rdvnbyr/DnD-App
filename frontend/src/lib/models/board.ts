@@ -2,6 +2,13 @@ export interface MemberSchema {
   userId: string;
   permission?: string;
   role?: string;
+  user?: {
+    _id: string;
+    name: string;
+    email: string;
+    avatar?: string;
+    username: string;
+  };
 }
 
 export type TaskActivity = {
@@ -22,6 +29,10 @@ export interface Task {
   createdAt?: string;
 }
 export type BoardTask = Task;
+export type CreateTask = Omit<BoardTask, '_id'> & {
+  members: Omit<MemberSchema, 'user'>[];
+};
+export type UpdateTask = Partial<Omit<CreateTask, 'createdAt'>>;
 export interface BoardList {
   _id: string;
   name: string;
@@ -40,6 +51,11 @@ export interface BoardCredentials {
   createdAt?: string;
 }
 
-export interface Board extends BoardCredentials {
-  // extra fields here
-}
+export type Board = BoardCredentials;
+
+
+// export types for use in other files
+export type CreateBoard = Omit<Board, '_id' | 'createdAt'>;
+export type UpdateBoard = Partial<Omit<CreateBoard, 'createdAt'>>;
+
+

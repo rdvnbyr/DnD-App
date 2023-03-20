@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../../../app/store';
 import { LOCAL_REST_API_URL } from '../../../lib/constants';
 import { Workspace, BoardCredentials, BoardList, BoardTask } from '../../../lib/models';
+import { UpdateTask } from '../../../lib/models/board';
 
 export const workspaceApi = createApi({
   reducerPath: 'workspaceApi',
@@ -136,7 +137,7 @@ export const workspaceApi = createApi({
       },
     }),
 
-    getTaskById: builder.query<Partial<BoardTask>, { boardId: string; taskId: string }>({
+    getTaskById: builder.query<BoardTask, { boardId: string; taskId: string }>({
       query: ({ boardId, taskId }) => `/boards/${boardId}/tasks/${taskId}`,
     }),
 
@@ -145,7 +146,7 @@ export const workspaceApi = createApi({
       {
         boardId: string;
         taskId: string;
-        data: Partial<BoardTask>;
+        data: UpdateTask;
       }
     >({
       query: (body) => {

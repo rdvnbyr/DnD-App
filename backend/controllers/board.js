@@ -1,4 +1,6 @@
 const Board = require('../models/board');
+const User = require('../models/user');
+const Avtivity = require('../models/include/activity');
 const Workspace = require('../models/workspace');
 const createError = require('http-errors');
 const validator = require('validator');
@@ -310,20 +312,58 @@ const getTaskById = async (req, res, next) => {
     for (const list of board.lists) {
       const task = list.tasks.id(req.params.taskId);
       if (task) {
-        return res.status(200).json(task);
+        const members = [...task.members];
+        const newMembers = [];
+        if (members.length > 0) {
+          members.user = {};
+          for (const member of members) {
+            const findMember = await User.findById(member.userId);
+            if (!findMember) {
+              throw createError(404, 'Member not found');
+            }
+            newMembers.push({
+              ...member.toObject(),
+              user: {
+                email: findMember.email,
+                username: findMember.username,
+                avatar: findMember.avatar,
+                name: findMember.name,
+              },
+            });
+          }
+        }
+        console.log(newMembers);
+        return res.status(200).json({
+          ...task.toObject(),
+          members: newMembers,
+        });
       }
     }
-
     throw createError(404, 'Task not found');
-    // const list = board.lists.find((list) => list.tasks.id(req.params.taskId));
-    // if (!list) {
-    //   throw createError(404, 'List not found');
-    // }
-    // const task = list.tasks.id(req.params.taskId);
-    // if (!task) {
-    //   throw createError(404, 'Task not found');
-    // }
-    // res.status(200).json(task);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const createTaskActivity = async (req, res, next) => {
+  try {
+    const board = await Board.findById(req.params.boardId);
+    if (!board) {
+      throw createError(404, 'Board not found');
+    }
+    if (
+      !board.members.find(
+        (user) => user.userId.toString() == req.currentUser.id.toString()
+      )
+    ) {
+      throw createError(401, 'Not authorized to access this board resource.');
+    }
+    const { comment, attachments } = req.body;
+    const newActivity = new Avtivity({
+      userId: req.currentUser.id,
+      comment: comment,
+      attachments: attachments || [],
+    });
   } catch (error) {
     next(error);
   }

@@ -4,9 +4,12 @@ import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { Portal } from 'react-portal';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetTaskByIdQuery, useUpdateTaskMutation } from '../core/workspace-api';
-import { TextEditor } from '../../../components/partials';
+import { Input, TextEditor } from '../../../components/partials';
 import parse from 'html-react-parser';
 import { toast } from 'react-toastify';
+import { MemberSchema } from '../../../lib/models/board';
+import { selectAuth } from '../../auth/core/auth-slice';
+import { useAppSelector } from '../../../app/hooks';
 
 export const TaskDialog = () => {
   const { boardId, taskId, wsId } = useParams();
@@ -20,6 +23,8 @@ export const TaskDialog = () => {
 
   const [showTextEditor, setShowTextEditor] = useState<boolean>(false);
   const [textEditorContent, setTextEditorContent] = useState<string>('');
+
+  const { user } = useAppSelector(selectAuth);
 
   useEffect(() => {
     if (data && data.description) {
@@ -35,8 +40,6 @@ export const TaskDialog = () => {
     setTextEditorContent(newContent);
   };
   const onEditorBlur = (newContent: string) => {
-    // setTextEditorContent(newContent);
-    // console.log('Content was updated with onBlur: ', newContent);
     updateTask({
       boardId: boardId as string,
       taskId: taskId as string,
@@ -47,7 +50,6 @@ export const TaskDialog = () => {
       .then(() => {
         refetch();
         setShowTextEditor(false);
-        toast.success('Task updated');
       })
       .catch(() => {
         setShowTextEditor(false);
@@ -57,6 +59,33 @@ export const TaskDialog = () => {
 
   const handleClose = () => {
     navigate(`/ws/${wsId}/b/${boardId}`);
+  };
+
+  const joinTaskHandler = async (members: MemberSchema[]) => {
+    const newMember: Omit<MemberSchema, 'user'> = {
+      userId: user.id,
+    };
+    const newMembers = [...members, newMember];
+    try {
+      await updateTask({
+        boardId: boardId as string,
+        taskId: taskId as string,
+        data: {
+          members: newMembers,
+        },
+      });
+      refetch();
+    } catch (error) {
+      toast.error("Can't update task");
+    }
+  };
+
+  const addCommentHandler = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const comment = (e.target as HTMLFormElement)['id-input-addcomment'].value;
+    if (!data || !comment) {
+      return;
+    }
   };
 
   return (
@@ -79,10 +108,36 @@ export const TaskDialog = () => {
                   <Col xs={12} md={9}>
                     <StyledSection>
                       <div className="d-flex flex-row align-items-center mb-2">
+                        <div className="d-flex flex-column">
+                          <p className="text-mutedfw-semibold">Members</p>
+                          <div className="d-flex flex-row align-items-center">
+                            {data.members.map((member) => {
+                              if (member.user) {
+                                return (
+                                  <div
+                                    key={'member-' + member.userId}
+                                    className="d-flex flex-row align-items-center me-2"
+                                  >
+                                    <p className="text-muted fs-6">
+                                      {member.user.username}
+                                    </p>
+                                  </div>
+                                );
+                              }
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </StyledSection>
+                    <StyledSection>
+                      <div className="d-flex flex-row align-items-center mb-2">
                         <div className="fs-5 fw-semibold">Description</div>
                         {data.description && !showTextEditor && (
                           <div className="ms-auto">
-                            <button className="btn btn-link btn-sm text-muted" onClick={() => setShowTextEditor(true)}>
+                            <button
+                              className="btn btn-link btn-sm text-muted"
+                              onClick={() => setShowTextEditor(true)}
+                            >
                               Edit
                             </button>
                           </div>
@@ -90,10 +145,16 @@ export const TaskDialog = () => {
 
                         {showTextEditor && (
                           <div className="ms-auto">
-                            <button onClick={() => setShowTextEditor(false)} className="btn btn-success btn-sm me-2">
+                            <button
+                              onClick={() => setShowTextEditor(false)}
+                              className="btn btn-success btn-sm me-2"
+                            >
                               Save
                             </button>
-                            <button onClick={() => setShowTextEditor(false)} className="btn btn-link btn-sm text-dark">
+                            <button
+                              onClick={() => setShowTextEditor(false)}
+                              className="btn btn-link btn-sm text-dark"
+                            >
                               Cancel
                             </button>
                           </div>
@@ -105,7 +166,7 @@ export const TaskDialog = () => {
                         </StyledAction>
                       )}
                       {data.description && !showTextEditor && (
-                        <div className='p-4 bg-light'>
+                        <div className="p-4 bg-light">
                           <div className="mb-2">{parse(data.description)}</div>
                         </div>
                       )}
@@ -121,11 +182,13 @@ export const TaskDialog = () => {
 
                     <StyledSection>
                       {/* Attachments */}
-                      <div className="d-flex flex-column my-2">
+                      <div className="d-flex flex-column">
                         <div className="d-flex flex-row align-items-center mb-2">
                           <div className="fs-5 fw-semibold">Attachments</div>
                           <div className="ms-auto">
-                            <button className="btn btn-link btn-sm text-muted">View all</button>
+                            <button className="btn btn-link btn-sm text-muted">
+                              View all
+                            </button>
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center">
@@ -137,27 +200,45 @@ export const TaskDialog = () => {
                           </StyledAction>
                         </div>
                       </div>
-
+                    </StyledSection>
+                    <StyledSection>
                       {/* Comments */}
-                      <div className="d-flex flex-column my-2">
+                      <div className="d-flex flex-column">
                         <div className="d-flex flex-row align-items-center mb-2">
                           <div className="fs-5 fw-semibold">Activities</div>
                           <div className="ms-auto">
-                            <button className="btn btn-link btn-sm text-muted">View all</button>
+                            <button className="btn btn-link btn-sm text-muted">
+                              View all
+                            </button>
                           </div>
+                        </div>
+                        <div className="d-flex flex-row align-items-center">
+                          {/* Username avatar */}
+                          <div className="d-flex flex-row align-items-center me-2 bg-light p-1 text-muted">
+                            {user.username}
+                          </div>
+                          <form
+                            className="d-flex flex-row align-items-center w-100"
+                            onSubmit={addCommentHandler}
+                          >
+                            <div className="d-flex flex-row align-items-center">
+                              <Input
+                                type="text"
+                                placeholder="Add Comment..."
+                                id="id-input-addcomment"
+                              />
+                              <button className="btn btn-primary ms-2">Add</button>
+                            </div>
+                          </form>
                         </div>
                       </div>
                     </StyledSection>
                   </Col>
                   <Col xs={6} md={3}>
                     <StyledActions>
-                      <StyledAction>
+                      <StyledAction onClick={() => joinTaskHandler(data.members)}>
                         <i className="bi bi-person"></i>
                         Join
-                      </StyledAction>
-                      <StyledAction>
-                        <i className="bi bi-pen"></i>
-                        Edit
                       </StyledAction>
 
                       <StyledAction>
