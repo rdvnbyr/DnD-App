@@ -85,15 +85,15 @@ const deleteWorkspace = async (req, res, next) => {
     if (!workspace) {
       throw createError(404, 'Workspace not found');
     }
-    const userExist = _.find(workspace.users, (user) => user.userId === req.currentUser.id);
-    if (!userExist?.userId) throw createError(401, 'Not authorized to access this workspace resource.');
-    const newUsers = _.filter(workspace.users, (user) => user.userId !== req.currentUser.id);
-    if (newUsers.length > 0) {
-      workspace.users = newUsers;
-      await workspace.save();
-      return res.status(200).json({ message: 'User removed from workspace' });
-    }
-    if (workspace.owner !== req.currentUser.id) {
+    // const userExist = _.find(workspace.users, (user) => user.userId === req.currentUser.id);
+    // if (!userExist?.userId) throw createError(401, 'Not authorized to access this workspace resource.');
+    // const newUsers = _.filter(workspace.users, (user) => user.userId !== req.currentUser.id);
+    // if (newUsers.length > 0) {
+    //   workspace.users = newUsers;
+    //   await workspace.save();
+    //   return res.status(200).json({ message: 'User removed from workspace' });
+    // }
+    if (workspace.owner.toString() !== req.currentUser.id.toString()) {
       throw createError(401, 'Not authorized to delete this workspace.');
     }
     const boards = workspace.boards;

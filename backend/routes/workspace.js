@@ -52,6 +52,6 @@ router.patch('/:workspaceId', isOwner, updateWorkspace);
  * @access  Private (token required) - user can only delete his own workspaces
  * @returns {message} string message
  */
-router.delete('/:workspaceId', isOwner, deleteWorkspace);
+router.delete('/:workspaceId', deleteWorkspace);
 
 module.exports = router;

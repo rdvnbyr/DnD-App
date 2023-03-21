@@ -69,7 +69,12 @@ export const Dashboard = () => {
   };
 
   const deleteWorkspaceHandler = async (id: string) => {
-    await deleteWorkspace(id);
+    deleteWorkspace(id)
+      .unwrap()
+      .then(() => refetch())
+      .catch((err) => {
+        toast.error(err?.data?.message || 'Something went wrong');
+      });
   };
 
   return (

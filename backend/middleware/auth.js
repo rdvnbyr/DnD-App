@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const jwtService = require('../services/jwt');
+const Workspace = require('../models/workspace');
 
 const protect = async (req, res, next) => {
   try {

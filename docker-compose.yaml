@@ -22,6 +22,11 @@ services:
       - logs:/app/logs
     env_file:
       - ./backend/.env
+    # environment:
+    #   - MONGO_URL=yourmongodburi
+    #   - PORT=8000
+    #   - NODE_ENV=development
+    #   - JWT_SECRET=yourjwtsecret
     depends_on:
       - mongodb
     container_name: backend
