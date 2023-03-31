@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
-const connectDB = async (req, res, next) => {
+const connectDB = async () => {
   mongoose.set('strictQuery', false);
   mongoose
+  /*eslint-env node*/
     .connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

@@ -1,3 +1,4 @@
+/*eslint-env node*/
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -10,6 +11,7 @@ const { graphqlHTTP } = require('express-graphql');
 const graphql = require('./graphql');
 const morgan = require('morgan');
 require('colors');
+const pool = require('./config/datasource.mysql');
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'app.log'), {
   flags: 'a',
@@ -86,7 +88,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/feedback', (req, res) => {
+app.get('/mysql', async (_req, res) => {
+  try {
+    const [result, test] = await pool.query('SELECT * FROM `country`');
+    res.json(result);
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+app.get('/feedback', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public/feedback', 'index.html'));
 });
 
@@ -117,7 +128,8 @@ app.get('/feedback/error', (req, res) => {
 });
 
 // define glabal error handler
-app.use((err, req, res, next) => {
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, _next) => {
   res.status(err.status || 500).json({
     message: err.message,
     error: err,
