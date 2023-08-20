@@ -20,23 +20,23 @@ export const useInterval = (callback: () => void, delay: number | null) => {
   }, [delay]);
 };
 
-export function useDebounce(callback: Function, timeout: number = 200, deps: Array<any> = []) {
-  const data = useRef({ firstTime: true });
-  useEffect(() => {
-    const { firstTime, clearFunc } = data.current;
+// export function useDebounce(callback: Function, timeout: number = 200, deps: Array<any> = []) {
+//   const data = useRef({ firstTime: true });
+//   useEffect(() => {
+//     const { firstTime, clearFunc } = data.current;
 
-    const handler = setTimeout(() => {
-      if (clearFunc && typeof clearFunc === 'function') {
-        clearFunc();
-      }
-      data.current.clearFunc = callback();
-    }, timeout);
+//     const handler = setTimeout(() => {
+//       if (clearFunc && typeof clearFunc === 'function') {
+//         clearFunc();
+//       }
+//       data.current.clearFunc = callback();
+//     }, timeout);
 
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [timeout, ...deps]);
-}
+//     return () => {
+//       clearTimeout(handler);
+//     };
+//   }, [timeout, ...deps]);
+// }
 
 export const useThrottle = (callback: Function, delay: number = 200, deps: Array<any> = []) => {
   const lastRan = useRef(Date.now());
