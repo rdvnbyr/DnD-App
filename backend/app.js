@@ -28,7 +28,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'assets')));
 app.use(morgan('combined', { stream: accessLogStream }));
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
 // Use routes
 app.use('/api/workspaces', protect, require('./routes/workspace'));
@@ -64,6 +68,8 @@ app.use(
   swaggerUi.setup(swaggerDocument, {
     explorer: true,
     customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'DnD API Explorer',
+    customfavIcon: path.join(__dirname, 'assets', 'favicon-dnd.webp'),
   })
 );
 app.get('/open-api', (req, res) => {
@@ -85,12 +91,12 @@ app.get('/ping', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.render(path.join(__dirname, 'public', 'index'), { title: 'Welcome to DnD' });
 });
 
 app.get('/mysql', async (_req, res) => {
   try {
-    const [result, test] = await pool.query('SELECT * FROM `country`');
+    const [result] = await pool.query('SELECT * FROM `country`');
     res.json(result);
   } catch (error) {
     res.json(error);
@@ -98,14 +104,14 @@ app.get('/mysql', async (_req, res) => {
 });
 
 app.get('/feedback', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'public/feedback', 'index.html'));
+  res.render(path.join(__dirname, 'public/feedback', 'index'), { title: 'Send Feedback'});
 });
 
 app.post('/feed/create', async (req, res) => {
   try {
     const { title, email, comment } = req.body;
     if (!title || !email || !comment) {
-      return res.redirect('/feedback/error');
+      return res.redirect('/feedback');
     }
     const feedback = new Feedback({
       title,
@@ -113,18 +119,21 @@ app.post('/feed/create', async (req, res) => {
       comment,
     });
     await feedback.save();
-    res.redirect('/feedback/success');
+    req.app.emit('feedback-success', feedback);
   } catch (error) {
-    res.redirect('/feedback/error');
+    req.app.emit('feedback-error', error);
   }
+  res.redirect('/feedback/received');
 });
 
-app.get('/feedback/success', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'data', 'feedback.json'));
-  res.sendFile(path.join(__dirname, 'public/feedback', 'success.html'));
-});
-app.get('/feedback/error', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/feedback', 'error.html'));
+app.get('/feedback/received', (req, res) => {
+  req.app.on('feedback-error', (error) => {
+    res.render(path.join(__dirname, 'public/feedback', 'error'), { error: error.message });
+  });
+
+  req.app.on('feedback-success', (feedback) => {
+    res.render(path.join(__dirname, 'public/feedback', 'success'), { feedback });
+  });
 });
 
 // define glabal error handler
