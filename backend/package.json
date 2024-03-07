@@ -17,6 +17,7 @@
   "author": "Ridvan Bayir",
   "license": "ISC",
   "dependencies": {
+    "amazon-sp-api": "^1.0.5",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",

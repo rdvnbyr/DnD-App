@@ -38,6 +38,7 @@ app.set('view engine', 'ejs');
 app.use('/api/workspaces', protect, require('./routes/workspace'));
 app.use('/api/boards', protect, require('./routes/board'));
 app.use('/api/users', require('./routes/user'));
+app.use('/api/aws', require('./routes/aws'));
 
 // graphql routes and middleware
 app.use('/graphql', protectGraphql);
@@ -137,8 +138,7 @@ app.get('/feedback/received', (req, res) => {
 });
 
 // define glabal error handler
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, _next) => {
+app.use((err, _req, res, _next) => {
   res.status(err.status || 500).json({
     message: err.message,
     error: err,
@@ -148,6 +148,6 @@ app.use((err, req, res, _next) => {
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   if (process.env.NODE_ENV === 'development') {
-    console.log(`Server running on http://localhost:${PORT}`.magenta.bold);
+    console.log(`Server running on ` + `http://localhost:${PORT}`.magenta);
   }
 });
