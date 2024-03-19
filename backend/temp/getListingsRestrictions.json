@@ -1,0 +1,22 @@
+{
+  "restrictions": [
+    {
+      "marketplaceId": "A1PA6795UKMFR9",
+      "conditionType": "new_new",
+      "reasons": [
+        {
+          "reasonCode": "APPROVAL_REQUIRED",
+          "message": "You need approval to list.",
+          "links": [
+            {
+              "resource": "https://sellercentral.amazon.de/hz/approvalrequest/restrictions/approve?asin=B08CF3DHSY",
+              "verb": "GET",
+              "title": "Request Approval via Seller Central.",
+              "type": "text/html"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

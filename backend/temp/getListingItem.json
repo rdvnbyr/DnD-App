@@ -1,0 +1,563 @@
+{
+  "numberOfResults": 1,
+  "items": [
+    {
+      "asin": "B08CF3DHSY",
+      "attributes": {
+        "power_plug_type": [
+          {
+            "value": "type_f_2pin_de_es",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "item_weight": [
+          {
+            "unit": "kilograms",
+            "value": 1.4,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "bullet_point": [
+          {
+            "language_tag": "de_DE",
+            "value": "Kabelgebunden. Bluetooth-Audiostreaming (V5.0).",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "language_tag": "de_DE",
+            "value": "Drei stufiger-Helligkeitsregelung",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "language_tag": "de_DE",
+            "value": "40 UKW- und 40 DAB+Senderspeicherplätze. Fernbedienung",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "language_tag": "de_DE",
+            "value": "2.0 Stereo-Sound mit 10 W RMS-Ausgang.Bluetooth-Streaming.Dual-Alarm, Sleep, Snooze-Funktion.",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "item_package_quantity": [
+          {
+            "value": 1,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "item_dimensions": [
+          {
+            "width": {
+              "unit": "centimeters",
+              "value": 21
+            },
+            "length": {
+              "unit": "centimeters",
+              "value": 11.5
+            },
+            "height": {
+              "unit": "centimeters",
+              "value": 12
+            },
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "brand": [
+          {
+            "language_tag": "de_DE",
+            "value": "Grundig",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "is_expiration_dated_product": [
+          {
+            "value": false,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "control_method": [
+          {
+            "value": "remote",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "package_level": [
+          {
+            "value": "unit",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "item_package_dimensions": [
+          {
+            "length": {
+              "unit": "centimeters",
+              "value": 15.7
+            },
+            "width": {
+              "unit": "centimeters",
+              "value": 18.3
+            },
+            "height": {
+              "unit": "centimeters",
+              "value": 33.1
+            },
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "hardware_interface": [
+          {
+            "value": "bluetooth_5",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "value": "3_5_mm_audio",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "part_number": [
+          {
+            "value": "GIR1140",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "style": [
+          {
+            "language_tag": "de_DE",
+            "value": "Stereo 2.0 / Bluetooth & DAB+",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "pattern": [
+          {
+            "language_tag": "de_DE",
+            "value": "Single",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "battery": [
+          {
+            "cell_composition": [
+              {
+                "value": "alkaline"
+              }
+            ],
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "manufacturer": [
+          {
+            "language_tag": "de_DE",
+            "value": "Grundig",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "externally_assigned_product_identifier": [
+          {
+            "value": "4013833043386",
+            "type": "ean",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "lithium_battery": [
+          {
+            "packaging": [
+              {
+                "value": "batteries_packed_with_equipment"
+              }
+            ],
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "model_number": [
+          {
+            "value": "DTR 4500",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "supplier_declared_dg_hz_regulation": [
+          {
+            "value": "waste",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "num_batteries": [
+          {
+            "quantity": 2,
+            "type": "aaa",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "gdpr_risk": [
+          {
+            "value": "no_electronic_information_stored",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "display": [
+          {
+            "type": [
+              {
+                "language_tag": "de_DE",
+                "value": "LCD"
+              }
+            ],
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "item_name": [
+          {
+            "language_tag": "de_DE",
+            "value": "GRUNDIG DTR 4500 Digital Radio, DAB+, FM-Radio, RDS, 2.0 Stereo-Lautsprechersystem, Weckfunktion, TFT Farbdisplay, inkl. Fernbedienung, Bluetooth, Schwarz",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "list_price": [
+          {
+            "value_with_tax": 129,
+            "currency": "EUR",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "batteries_required": [
+          {
+            "value": true,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "radio_bands_supported": [
+          {
+            "language_tag": "de_DE",
+            "value": "AM/FM",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "includes_rechargable_battery": [
+          {
+            "value": false,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "product_site_launch_date": [
+          {
+            "value": "2020-07-09T10:26:14.255Z",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "batteries_included": [
+          {
+            "value": true,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "connectivity_technology": [
+          {
+            "language_tag": "de_DE",
+            "value": "Bluetooth",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "included_components": [
+          {
+            "language_tag": "de_DE",
+            "value": "Bedienungsanleitung",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "language_tag": "de_DE",
+            "value": "Netzadapter",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "language": [
+          {
+            "type": "published",
+            "value": "english",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "type": "manual",
+            "value": "german",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "type": "manual",
+            "value": "english",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "type": "manual",
+            "value": "french",
+            "marketplace_id": "A1PA6795UKMFR9"
+          },
+          {
+            "type": "original",
+            "value": "french",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "model_name": [
+          {
+            "language_tag": "de_DE",
+            "value": "DTR 4500",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "number_of_items": [
+          {
+            "value": 1,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "accepted_voltage_frequency": [
+          {
+            "value": "100v_240v_50hz_60hz",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "warranty_description": [
+          {
+            "language_tag": "de_DE",
+            "value": "2 Jahre Herstellergarantie",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "color": [
+          {
+            "language_tag": "de_DE",
+            "value": "Schwarz",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "speakers_maximum_output_power": [
+          {
+            "unit": "watts",
+            "value": 10,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "item_package_weight": [
+          {
+            "unit": "kilograms",
+            "value": 1.94,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "item_length_width_height": [
+          {
+            "length": {
+              "unit": "centimeters",
+              "value": 21
+            },
+            "width": {
+              "unit": "centimeters",
+              "value": 11.5
+            },
+            "height": {
+              "unit": "centimeters",
+              "value": 12
+            },
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "tuner_technology": [
+          {
+            "language_tag": "de_DE",
+            "value": "DAB+",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "recommended_browse_nodes": [
+          {
+            "value": "189154031",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "special_feature": [
+          {
+            "language_tag": "de_DE",
+            "value": "Tragbar",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "uvp_list_price": [
+          {
+            "currency": "EUR",
+            "value": 129,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "power_source_type": [
+          {
+            "language_tag": "de_DE",
+            "value": "Kabelgebunden",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "street_date": [
+          {
+            "value": "2020-09-30T00:00:01Z",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "voltage": [
+          {
+            "unit": "volts",
+            "value": 12,
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ],
+        "compatible_devices": [
+          {
+            "language_tag": "de_DE",
+            "value": "Smartphone",
+            "marketplace_id": "A1PA6795UKMFR9"
+          }
+        ]
+      },
+      "dimensions": [
+        {
+          "marketplaceId": "A1PA6795UKMFR9",
+          "item": {
+            "height": {
+              "unit": "inches",
+              "value": 4.724409444
+            },
+            "length": {
+              "unit": "inches",
+              "value": 4.5275590505
+            },
+            "weight": {
+              "unit": "pounds",
+              "value": 3.086471668
+            },
+            "width": {
+              "unit": "inches",
+              "value": 8.267716527
+            }
+          },
+          "package": {
+            "height": {
+              "unit": "inches",
+              "value": 6.1811023559
+            },
+            "length": {
+              "unit": "inches",
+              "value": 13.0314960497
+            },
+            "weight": {
+              "unit": "pounds",
+              "value": 4.2769678828
+            },
+            "width": {
+              "unit": "inches",
+              "value": 7.2047244021
+            }
+          }
+        }
+      ],
+      "identifiers": [
+        {
+          "marketplaceId": "A1PA6795UKMFR9",
+          "identifiers": [
+            {
+              "identifierType": "EAN",
+              "identifier": "4013833043386"
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "marketplaceId": "A1PA6795UKMFR9",
+          "images": [
+            {
+              "variant": "MAIN",
+              "link": "https://m.media-amazon.com/images/I/71Hf7Z9M7uL.jpg",
+              "height": 1559,
+              "width": 2560
+            },
+            {
+              "variant": "MAIN",
+              "link": "https://m.media-amazon.com/images/I/415yFI-rlEL.jpg",
+              "height": 305,
+              "width": 500
+            },
+            {
+              "variant": "MAIN",
+              "link": "https://m.media-amazon.com/images/I/415yFI-rlEL._SL75_.jpg",
+              "height": 46,
+              "width": 75
+            },
+            {
+              "variant": "PT01",
+              "link": "https://m.media-amazon.com/images/I/81c8RIglFKL.jpg",
+              "height": 1531,
+              "width": 2352
+            },
+            {
+              "variant": "PT01",
+              "link": "https://m.media-amazon.com/images/I/41VFA7vQogL.jpg",
+              "height": 325,
+              "width": 500
+            },
+            {
+              "variant": "PT01",
+              "link": "https://m.media-amazon.com/images/I/41VFA7vQogL._SL75_.jpg",
+              "height": 49,
+              "width": 75
+            },
+            {
+              "variant": "PT02",
+              "link": "https://m.media-amazon.com/images/I/71M38GrfK9L.jpg",
+              "height": 1389,
+              "width": 2138
+            },
+            {
+              "variant": "PT02",
+              "link": "https://m.media-amazon.com/images/I/41y8+pArpOL.jpg",
+              "height": 325,
+              "width": 500
+            },
+            {
+              "variant": "PT02",
+              "link": "https://m.media-amazon.com/images/I/41y8+pArpOL._SL75_.jpg",
+              "height": 49,
+              "width": 75
+            }
+          ]
+        }
+      ],
+      "productTypes": [
+        {
+          "marketplaceId": "A1PA6795UKMFR9",
+          "productType": "RADIO"
+        }
+      ],
+      "summaries": [
+        {
+          "marketplaceId": "A1PA6795UKMFR9",
+          "adultProduct": false,
+          "autographed": false,
+          "brand": "Grundig",
+          "browseClassification": {
+            "displayName": "Internet-Radios",
+            "classificationId": "189154031"
+          },
+          "color": "Schwarz",
+          "itemClassification": "BASE_PRODUCT",
+          "itemName": "GRUNDIG DTR 4500 Digital Radio, DAB+, FM-Radio, RDS, 2.0 Stereo-Lautsprechersystem, Weckfunktion, TFT Farbdisplay, inkl. Fernbedienung, Bluetooth, Schwarz",
+          "manufacturer": "Grundig",
+          "memorabilia": false,
+          "modelNumber": "DTR 4500",
+          "packageQuantity": 1,
+          "partNumber": "GIR1140",
+          "releaseDate": "2020-09-30",
+          "style": "Stereo 2.0 / Bluetooth & DAB+",
+          "tradeInEligible": false,
+          "websiteDisplayGroup": "home_theater_display_on_website",
+          "websiteDisplayGroupName": "Home Theater"
+        }
+      ]
+    }
+  ]
+}

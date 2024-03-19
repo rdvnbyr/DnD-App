@@ -1,0 +1,172 @@
+{
+  "metaSchema": {
+    "link": {
+      "resource": "https://selling-partner-definitions-prod-dub.s3.eu-west-1.amazonaws.com/schema/amazon-product-type-definition-meta-schema-v1.json/rZ%252F2Yep0np022S38ZdEiNQ%253D%253D?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIQDR8qYs%2Bi3nE88siq%2BjPsw5Khor6RKaYUWHCj26dei8bgIgfKGjUIUoYkHF1uQ9zPTaRUlKPOxgjepbzEH6jLMaPe8q0gQI7f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARADGgw1MzU3ODk4MjM4MDgiDDciB8yjqD1oth%2FqgiqmBBGvejG4KNBqC8uWuMYzIf4gl69Wox1V2PUE9wAimJ36NFSBPLxp15KXH7Ps21yizUc5A%2BoaUhjZEKNZhQSnt88B6ANV4l2UymUHF4yC18WMWPUz6eelXYGSDUSjsFYlXQUOmYgeS%2BoEfTkIctMetYIzdFEvr%2B12u%2BCMuu23aLMkEUDqPPQ3vyRiQ29DFY2DmmzErf90f%2BobZxZHGsW5iHhhPP0BdtZV1%2FMILYzFobjGkE%2FIZTLOqNJucbnlwMCjUVO9bxYFxQ1nZYi37cphzPPR7poNMYOczjfen6EMRRzZtWwbR%2FAF3TJiY1WLEDjru0kXu%2FaJInYz%2BArFXd1uRYm%2FXhWcHiVtlB7iVi86tiqMNLo5tuhzeIK04JOV9I8eLgCLtt22UQa4Azu5GwVivcw5K6gEKkgwPkhO1hltZxTVyGKs5qGRX3A7WvJvaitLB3Um1RkjRw9dbSabDTRNCkToy6a1gfVrFygpLzuYdn8uYg0NJ2L46C0WurNgbnpWz%2F512pnTf8wtXvrdPdfhZEXJkuDZsV5nMnhZspjzc%2BnwAFU%2FMoHDNTBrubTtMGuZ%2FnN%2Bi32bz46jnkME0YgYJnzNI0lhOSCFjxUFGvTdHv3hP8WJ4hE5l6%2FIFOC3yxUDLSNeiRdqg8vdew%2BG2is0OubWivMShebYDK6WRhh3rHeMYFDW4OCEYwha4M6N0WHb2JS0yjO3J%2Bqvs7tlWUwvA1Nu4mNQJ7gwzP3lrwY6pwExqs0BenK3duFGuhoHl71nDuXq9ejwrhRG1KEYhr%2FDv2Khlthlad7t9yuAPYSwV7x2pWDxAgrFQTZGcmwcQOBcy7%2FzLHZfF32r%2FLJr4zS7wxj6qlLqpfFSj7uhdATXzAiE8A%2BYxPwakGLdLQnhjpj0Ov9yd97s9CPXGJGnPNRdGPnCOLvR1ucRE20UMQlDNO48OTtbr%2BrvZ7DW6S6gX%2BZQdQzjedL2PA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240319T133855Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAXZP4P45ACLJIW253%2F20240319%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=6d6881c13d2393ea9f1fbdc79cd1844629a18e7e4ceafce0c0d25f843ee299f0",
+      "verb": "GET"
+    },
+    "checksum": "rZ/2Yep0np022S38ZdEiNQ=="
+  },
+  "schema": {
+    "link": {
+      "resource": "https://selling-partner-definitions-prod-dub.s3.eu-west-1.amazonaws.com/schema/RADIO.json/W2dkGHcX1xoq4oDHaXxSbQ%253D%253D?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJHMEUCIQDR8qYs%2Bi3nE88siq%2BjPsw5Khor6RKaYUWHCj26dei8bgIgfKGjUIUoYkHF1uQ9zPTaRUlKPOxgjepbzEH6jLMaPe8q0gQI7f%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARADGgw1MzU3ODk4MjM4MDgiDDciB8yjqD1oth%2FqgiqmBBGvejG4KNBqC8uWuMYzIf4gl69Wox1V2PUE9wAimJ36NFSBPLxp15KXH7Ps21yizUc5A%2BoaUhjZEKNZhQSnt88B6ANV4l2UymUHF4yC18WMWPUz6eelXYGSDUSjsFYlXQUOmYgeS%2BoEfTkIctMetYIzdFEvr%2B12u%2BCMuu23aLMkEUDqPPQ3vyRiQ29DFY2DmmzErf90f%2BobZxZHGsW5iHhhPP0BdtZV1%2FMILYzFobjGkE%2FIZTLOqNJucbnlwMCjUVO9bxYFxQ1nZYi37cphzPPR7poNMYOczjfen6EMRRzZtWwbR%2FAF3TJiY1WLEDjru0kXu%2FaJInYz%2BArFXd1uRYm%2FXhWcHiVtlB7iVi86tiqMNLo5tuhzeIK04JOV9I8eLgCLtt22UQa4Azu5GwVivcw5K6gEKkgwPkhO1hltZxTVyGKs5qGRX3A7WvJvaitLB3Um1RkjRw9dbSabDTRNCkToy6a1gfVrFygpLzuYdn8uYg0NJ2L46C0WurNgbnpWz%2F512pnTf8wtXvrdPdfhZEXJkuDZsV5nMnhZspjzc%2BnwAFU%2FMoHDNTBrubTtMGuZ%2FnN%2Bi32bz46jnkME0YgYJnzNI0lhOSCFjxUFGvTdHv3hP8WJ4hE5l6%2FIFOC3yxUDLSNeiRdqg8vdew%2BG2is0OubWivMShebYDK6WRhh3rHeMYFDW4OCEYwha4M6N0WHb2JS0yjO3J%2Bqvs7tlWUwvA1Nu4mNQJ7gwzP3lrwY6pwExqs0BenK3duFGuhoHl71nDuXq9ejwrhRG1KEYhr%2FDv2Khlthlad7t9yuAPYSwV7x2pWDxAgrFQTZGcmwcQOBcy7%2FzLHZfF32r%2FLJr4zS7wxj6qlLqpfFSj7uhdATXzAiE8A%2BYxPwakGLdLQnhjpj0Ov9yd97s9CPXGJGnPNRdGPnCOLvR1ucRE20UMQlDNO48OTtbr%2BrvZ7DW6S6gX%2BZQdQzjedL2PA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240319T133855Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAXZP4P45ACLJIW253%2F20240319%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Expires=604800&X-Amz-Signature=b1d7aa195abdbb9011e41e456aa75a7b86a3e451b02188db5d804d438ced8aa2",
+      "verb": "GET"
+    },
+    "checksum": "W2dkGHcX1xoq4oDHaXxSbQ=="
+  },
+  "requirements": "LISTING",
+  "requirementsEnforced": "ENFORCED",
+  "propertyGroups": {
+    "offer": {
+      "title": "Angebot",
+      "description": "Produktangebot",
+      "propertyNames": [
+        "skip_offer",
+        "fulfillment_availability",
+        "purchasable_offer",
+        "condition_type",
+        "condition_note",
+        "list_price",
+        "product_tax_code",
+        "merchant_release_date",
+        "merchant_shipping_group",
+        "max_order_quantity",
+        "gift_options",
+        "uvp_list_price",
+        "main_offer_image_locator",
+        "other_offer_image_locator_1",
+        "other_offer_image_locator_2",
+        "other_offer_image_locator_3",
+        "other_offer_image_locator_4",
+        "other_offer_image_locator_5"
+      ]
+    },
+    "images": {
+      "title": "Bilder",
+      "description": "Bereitstellung von Medieninhalten, wie etwa Produktbildern",
+      "propertyNames": [
+        "main_product_image_locator",
+        "other_product_image_locator_1",
+        "other_product_image_locator_2",
+        "other_product_image_locator_3",
+        "other_product_image_locator_4",
+        "other_product_image_locator_5",
+        "other_product_image_locator_6",
+        "other_product_image_locator_7",
+        "other_product_image_locator_8",
+        "swatch_product_image_locator",
+        "image_locator_ps01",
+        "image_locator_ps02",
+        "image_locator_ps03",
+        "image_locator_ps04",
+        "image_locator_ps05",
+        "image_locator_ps06"
+      ]
+    },
+    "shipping": {
+      "title": "Versand",
+      "description": "Versand",
+      "propertyNames": ["item_package_dimensions", "item_package_weight", "package_contains_sku"]
+    },
+    "variations": {
+      "title": "Variationen",
+      "description": "Produktvariationen",
+      "propertyNames": ["parentage_level", "child_parent_sku_relationship", "variation_theme"]
+    },
+    "safety_and_compliance": {
+      "title": "Sicherheit und Einhaltung von Regeln",
+      "description": "Sicherheit und Einhaltung von Regeln",
+      "propertyNames": [
+        "country_of_origin",
+        "warranty_description",
+        "batteries_required",
+        "batteries_included",
+        "battery",
+        "num_batteries",
+        "number_of_lithium_metal_cells",
+        "number_of_lithium_ion_cells",
+        "lithium_battery",
+        "supplier_declared_dg_hz_regulation",
+        "ghs",
+        "hazmat",
+        "safety_data_sheet_url",
+        "item_weight",
+        "includes_rechargable_battery",
+        "ec_medical_device_sales_channel",
+        "eu_spare_part_availability_duration",
+        "dsa_responsible_party_address",
+        "compliance_media"
+      ]
+    },
+    "product_identity": {
+      "title": "Produktidentität",
+      "description": "Produktidentität",
+      "propertyNames": [
+        "item_name",
+        "brand",
+        "externally_assigned_product_identifier",
+        "merchant_suggested_asin",
+        "supplier_declared_has_product_identifier_exemption",
+        "recommended_browse_nodes",
+        "package_level",
+        "model_number",
+        "model_name",
+        "manufacturer"
+      ]
+    },
+    "product_details": {
+      "title": "Produktdetails",
+      "description": "Produktdetails",
+      "propertyNames": [
+        "product_description",
+        "bullet_point",
+        "generic_keyword",
+        "special_feature",
+        "style",
+        "material",
+        "number_of_items",
+        "item_package_quantity",
+        "water_resistance_level",
+        "display",
+        "color",
+        "size",
+        "part_number",
+        "edition",
+        "configuration",
+        "language",
+        "power_source_type",
+        "hardware_interface",
+        "frequency",
+        "tuner_technology",
+        "connectivity_technology",
+        "voltage",
+        "power_plug_type",
+        "accepted_voltage_frequency",
+        "radio_bands_supported",
+        "customer_package_type",
+        "included_feature",
+        "pattern",
+        "compatible_devices",
+        "is_expiration_dated_product",
+        "product_expiration_type",
+        "fc_shelf_life",
+        "speakers_maximum_output_power",
+        "product_site_launch_date",
+        "included_components",
+        "recommended_uses_for_product",
+        "scent",
+        "control_method",
+        "gdpr_risk",
+        "item_length_width_height"
+      ]
+    }
+  },
+  "locale": "de_DE",
+  "marketplaceIds": ["A1PA6795UKMFR9"],
+  "productType": "RADIO",
+  "displayName": "Radio",
+  "productTypeVersion": {
+    "version": "UAAAAAAAAAAAAAAAAlYD1uo648ULIFB4G27MOHsJgkS9-",
+    "latest": true,
+    "releaseCandidate": false
+  }
+}
