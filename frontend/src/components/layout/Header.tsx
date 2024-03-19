@@ -1,6 +1,6 @@
-import { _uuid, _uuidByLength } from '../../lib/utils';
+import { _uuid } from '../../lib/utils';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../../assets/react.svg';
 
 const navigation = [
@@ -16,23 +16,38 @@ export function Header({ isAuthenticated }: HeaderProps) {
     <header className="bg-white shadow">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/">
-            <img alt="d&d" src={logo} width="30" height="30" className="d-inline-block align-top" /> Tsx-d&d
+          <Navbar.Brand>
+            <NavLink to="/" className="nav-link">
+              <img alt="d&d" src={logo} width="30" height="30" className="d-inline-block align-top" /> Tsx-d&d
+            </NavLink>
           </Navbar.Brand>
           <Nav>
             {navigation.map((item) => (
-              <Nav.Link active={item.current} key={_uuid()} href={item.href}>
+              <NavLink
+                key={_uuid()}
+                to={item.href}
+                className="nav-link"
+                style={({ isActive }) => ({
+                  fontWeight: isActive ? 'bold' : '',
+                })}
+              >
                 {item.name}
-              </Nav.Link>
+              </NavLink>
             ))}
             {isAuthenticated ? (
-              <Link className="btn btn-dark text-white" to="/logout">
+              <NavLink className="nav-link" to="/logout">
                 Logout
-              </Link>
+              </NavLink>
             ) : (
-              <Link className="btn btn-dark text-white" to="/login">
+              <NavLink
+                to="/login"
+                className="nav-link"
+                style={({ isActive }) => ({
+                  fontWeight: isActive ? 'bold' : '',
+                })}
+              >
                 Login
-              </Link>
+              </NavLink>
             )}
           </Nav>
         </Container>

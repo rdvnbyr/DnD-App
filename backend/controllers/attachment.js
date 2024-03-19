@@ -1,7 +1,7 @@
 const Attachment = require('../models/Attachment');
 
 module.exports = {
-  uploadFile: async (req, res) => {
+  uploadFile: async (req, res, next) => {
     try {
       const attachment = new Attachment({
         name: req.file.originalname,
