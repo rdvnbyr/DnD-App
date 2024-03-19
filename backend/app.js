@@ -138,7 +138,7 @@ app.get('/feedback/received', (req, res) => {
 });
 
 // define glabal error handler
-app.use((err, _req, res, _next) => {
+app.use((err, _req, res) => {
   res.status(err.status || 500).json({
     message: err.message,
     error: err,
