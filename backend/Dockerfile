@@ -27,4 +27,6 @@ EXPOSE $PORT
 
 # VOLUME [ "C:\Users\bayir\Desktop\devs\ppapp\dnd\express:/app" , "/app/node_modules" ]
 
+RUN yarn
+
 CMD [ "yarn", "start" ]

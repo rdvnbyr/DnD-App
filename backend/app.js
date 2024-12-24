@@ -7,11 +7,11 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/datasource');
 const { protect, protectGraphql } = require('./middleware/auth');
 const swaggerDocument = require('./config/swagger.json');
-const { graphqlHTTP } = require('express-graphql');
-const graphql = require('./graphql');
 const morgan = require('morgan');
 require('colors');
 const pool = require('./config/datasource.mysql');
+const { graphqlHTTP } = require('express-graphql');
+const {graphql} = require('graphql');
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs', 'app.log'), {
   flags: 'a',
